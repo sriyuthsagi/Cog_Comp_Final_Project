@@ -1,24 +1,30 @@
 # Sample code for class declaration of bundles for RPI Bakeoff Negotiation
 
 # This is a multiplicative constant that will be used to determine our starting price.
-# Right now, it is set to 5 times the unit cost
-UNIT_TO_SELLING = 5
+# Right now, it is set to 'x' times the unit cost
+UNIT_TO_SELLING = 3
 
 class Bundle:
 
-    def __init__(self, egg_cost, egg_unit, flour_cost, flour_unit, milk_cost, milk_unit, sugar_cost, sugar_unit, \
-    bakingpowder_cost, bakingpowder_unit, chocolate_cost, chocolate_unit, vanilla_cost, vanilla_unit, blueberry_cost, blueberry_unit):
+    def __init__(self, egg_cost, egg_unit, egg_quantity=0,\
+    flour_cost, flour_unit, flour_quantity=0,\
+    milk_cost, milk_unit, milk_quantity=0,\
+    sugar_cost, sugar_unit, sugar_quantity=0,\
+    bakingpowder_cost, bakingpowder_unit, bakingpowder_quantity=0,\
+    chocolate_cost, chocolate_unit, chocolate_quantity=0,\
+    vanilla_cost, vanilla_unit, vanilla_quantity=0,\
+    blueberry_cost, blueberry_unit, blueberry_quantity=0):
 
         self.bundle =
         {
-            "Eggs" : Eggs(egg_cost*UNIT_TO_SELLING, egg_cost, egg_unit),
-            "Flour" : Flour(flour_cost*UNIT_TO_SELLING, flour_cost, flour_unit),
-            "Milk" : Milk(milk_cost*UNIT_TO_SELLING, milk_cost, milk_unit),
-            "Sugar" : Sugar(sugar_cost*UNIT_TO_SELLING, sugar_cost, sugar_unit),
-            "Baking Powder" : BakingPowder(bakingpowder_cost*UNIT_TO_SELLING, bakingpowder_cost, bakingpowder_unit),
-            "Chocolate Flavor" : ChocolateFlavor(chocolate_cost*UNIT_TO_SELLING, chocolate_cost, chocolate_unit),
-            "Vanilla Flavor" : VanillaFlavor(vanilla_cost*UNIT_TO_SELLING, vanilla_cost, vanilla_unit),
-            "Blueberry Flavor" : BlueberryFlavor(blueberry_cost*UNIT_TO_SELLING, blueberry_cost, blueberry_unit)
+            "Eggs" : Eggs(egg_cost*UNIT_TO_SELLING, egg_cost, egg_unit, egg_quantity),
+            "Flour" : Flour(flour_cost*UNIT_TO_SELLING, flour_cost, flour_unit, flour_quantity),
+            "Milk" : Milk(milk_cost*UNIT_TO_SELLING, milk_cost, milk_unit, milk_quantity),
+            "Sugar" : Sugar(sugar_cost*UNIT_TO_SELLING, sugar_cost, sugar_unit, sugar_quantity),
+            "Baking Powder" : BakingPowder(bakingpowder_cost*UNIT_TO_SELLING, bakingpowder_cost, bakingpowder_unit, bakingpowder_quantity),
+            "Chocolate Flavor" : ChocolateFlavor(chocolate_cost*UNIT_TO_SELLING, chocolate_cost, chocolate_unit, chocolate_quantity),
+            "Vanilla Flavor" : VanillaFlavor(vanilla_cost*UNIT_TO_SELLING, vanilla_cost, vanilla_unit, vanilla_quantity),
+            "Blueberry Flavor" : BlueberryFlavor(blueberry_cost*UNIT_TO_SELLING, blueberry_cost, blueberry_unit, blueberry_quantity)
         }
 
         self.total_price = 0
@@ -28,7 +34,14 @@ class Bundle:
         for item in self.bundle:
             self.total_price += self.bundle[item].price * self.bundle[item].quantity
 
-    def toString():
+    def is_profitable():
+        total_unit_price = 0
+        for item in self.bundle:
+            total_unit_price += self.bundle[item].min_price * self.bundle[item].quantity
+        calculate_total_price()
+        return self.total_price > total_unit_price
+
+    def to_string():
         string = "The current offer is "
         for item in self.bundle:
             if self.bundle[item].quantity > 0:
@@ -45,10 +58,10 @@ class Bundle:
 
 
 class Item():
-    def __init__(self, starting_price, min_price, unit):
+    def __init__(self, starting_price, min_price, unit, quantity):
         self.price = starting_price
         self.min_price = min_price
-        self.quantity = 0
+        self.quantity = quantity # default set to 0
         self.unit = unit # example: "cups", "each", "packets"
 
     def can_reduce_price():
@@ -64,7 +77,7 @@ class Item():
 
     # increase the number if items we are selling to a new amount
     # if an arguement is not provided, simply increase the current quantity by 1
-    def increase_quantity(new_quantity=self.quantity+1):
+    def set_quantity(new_quantity):
         self.quantity = new_quantity
 
 
