@@ -36,10 +36,65 @@ class Agent:
         self.blueberry_cost = util["utilityParameters"]["blueberry"]["parameters"]["unitcost"]
         self.vanilla_cost = util["utilityParameters"]["vanilla"]["parameters"]["unitcost"]
         
+    def get_response(self,msg):
+          
+        reply = {}
+        reply['inReplyTo'] = msg['currentState']
+        reply['sender'] = self.my_name
+        reply['transcript'] = "Please buy my coffee. " #this shouldnt be said. only here as emergency backup
+        reply['room'] = self.room_num
+         
+        sender = msg["sender"]
+        if (sender == None or sender == "null"): sender = "User"
+        transcript = msg["transcript"]
+        addressee = msg["addressee"]
+        
+        my_name = self.my_name
+        if my_name == "Watson":
+            other_name = "Celia"
+        else:
+            other_name = "Watson"
+        
+        # Determine whether we will respond to this message
+        willRespond = False;
+        if addressee == my_name:
+            willRespond = True;
+            print("Will respond. Has been addressed directly.")
+        elif addressee == other_name:
+            willRespond = False;
+            print("Will not respond. Other agent has been addressed directly.")
+        else:
+            if sender == my_name:
+                print("Will not respond. Is own message.")
+                willRespond = False;
+            else:
+                print("Will respond. Is not addressed to anyone in particular.")
+                willRespond = True;
+                
+        # Store data to preserve between passes
+        if sender == my_name:
+          print("Message from self") #just here as a placeholder really
+        elif sender == "User":
+          # get opponent_intent and opponent_price
+          self.user_intent = watson_assistant.get_intent(transcript)
+          self.hasSpokenAlreadyThisRound = False
+          print("New round begin. User intent Id'd as ",self.user_intent)
+          #user_price = price_identify.priceIdentify(transcript)
+        else:# if sender == other_name:
+          # get opponent_intent and opponent_price
+          self.opponent_intent = watson_assistant.get_intent(transcript)
+          self.opponent_price = price_identify.priceIdentify(transcript)
+        
+        # dont respond more than once per round
+        if self.hasSpokenAlreadyThisRound:
+          willRespond = False
+          print("Will not respond. Has already spoken in this round.")
+        
+        
+        if willRespond:
+            reply["transcript"] = "This is where we need to generate the reply"
 
-
-
-
+        return reply;
 
 
 
