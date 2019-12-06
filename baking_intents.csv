@@ -26,7 +26,7 @@ How expensive is that,ask_price
 How much for,ask_price
 How much for your,ask_price
 How much is,ask_price
-What does your cost?ask_price
+What does your cost?,ask_price
 It costs,opponent_price
 I can give it to you for,opponent_price
 The price is,opponent_price
