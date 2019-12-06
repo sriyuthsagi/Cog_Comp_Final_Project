@@ -79,7 +79,7 @@ class Agent:
           self.user_intent = watson_assistant.get_intent(transcript)
           self.hasSpokenAlreadyThisRound = False
           print("New round begin. User intent Id'd as ",self.user_intent)
-          #user_price = price_identify.priceIdentify(transcript)
+          self.user_price = price_identify.priceIdentify(transcript)
         else:# if sender == other_name:
           # get opponent_intent and opponent_price
           self.opponent_intent = watson_assistant.get_intent(transcript)
@@ -92,6 +92,7 @@ class Agent:
         
         
         if willRespond:
+            self.hasSpokenAlreadyThisRound = True
             reply["transcript"] = "This is where we need to generate the reply"
 
         return reply;
