@@ -1,0 +1,164 @@
+Can I get a cheaper price?,bargaining
+Can you lower the price?,bargaining
+Give me a discount.,bargaining
+Is it possible to lower the cost?,bargaining
+Can decrease the cost?,bargaining
+Can you do,bargaining
+Can you give me a discount?,bargaining
+Can you lower,bargaining
+Can you match,bargaining
+Can you give me a discount of,bargaining
+Can you give me a discount for,bargaining
+Do you offer,bargaining
+How about,bargaining
+I only have,bargaining
+I'll make you a deal,bargaining
+Is there anyway you can help me,bargaining
+Is there anyway you can lower the price,bargaining
+Is there anyway you can give me a discount,bargaining
+What about,bargaining
+What is the cost?,ask_price
+What is the price?,ask_price
+How much does your cost,ask_price
+How expensive is your,ask_price
+How much is your,ask_price
+How expensive is that,ask_price
+How much for,ask_price
+How much for your,ask_price
+How much is,ask_price
+What does your cost?ask_price
+It costs,opponent_price
+I can give it to you for,opponent_price
+The price is,opponent_price
+The cost is,opponent_price
+It is,opponent_price
+I can give you a discount of,opponent_price
+I can lower my price to,opponent_price
+I can offer you,opponent_price
+My coffee is,opponent_price
+My coffee is only,opponent_price
+My discount for you is,opponent_price
+Our coffee has,opponent_price
+Our coffee is,opponent_price
+That will be,opponent_price
+Thank you for buying from us,opponent_sale
+We appreciate your patronage,opponent_sale
+Thanks for coming,opponent_sale
+Here's your,opponent_sale
+Is it worth it?,product_info
+Why should I buy your,product_info
+What's special about your,product_info
+What makes your better?,product_info
+Tell me more about the,product_info
+How good is the,product_info
+Is your good?,product_info
+Is it good?,product_info
+Do you have,buy_product
+I would like,buy_product
+I would like some,buy_product
+Do you sell,buy_product
+I want,buy_product
+Can I get,buy_product
+Can I have,buy_product
+Can I have some,buy_product
+Can I buy,buy_product
+Can I get some,buy_product
+Can I have some,buy_product
+Can I order,buy_product
+Can I purchase,buy_product
+Could I get,buy_product
+Could I get some,buy_product
+Could I purchase,buy_product
+I want a,buy_product
+I want some,buy_product
+I want to buy,buy_product
+I want to buy a,buy_product
+I want to buy some,buy_product
+I want to purchase,buy_product
+I want to purchase some,buy_product
+I will have,buy_product
+I will have a,buy_product
+I will have some,buy_product
+I would like to buy,buy_product
+I would like to buy some,buy_product
+I would like to purchase,buy_product
+I'll have,buy_product
+I'll have some,buy_product
+I want to buy your,accept_offer
+I want your,accept_offer
+I will take your,accept_offer
+Give me your,accept_offer
+I choose your,accept_offer
+Give me that right now,accept_offer
+I accept your offer,accept_offer
+I want it,accept_offer
+I want to buy from you,accept_offer
+I would like to buy it,accept_offer
+I'll take that,accept_offer
+I'm pleased to do business with you,accept_offer
+Thank you for my,accept_offer
+Good day,General_Greetings
+Good evening,General_Greetings
+Good morning,General_Greetings
+Good to see you,General_Greetings
+Greetings,General_Greetings
+Have you been well?,General_Greetings
+Hello Agent,General_Greetings
+Hello I am looking for some help here,General_Greetings
+Hello,General_Greetings
+Hey how are you doing,General_Greetings
+Hey there all,General_Greetings
+Hey there,General_Greetings
+Hey twin,General_Greetings
+Hey you,General_Greetings
+Hi advisor,General_Greetings
+Hi there,General_Greetings
+How are things going?,General_Greetings
+How are you today?,General_Greetings
+How have you been?,General_Greetings
+How is it going?,General_Greetings
+How r u?,General_Greetings
+Looking good eve,General_Greetings
+Ok take me back,General_Greetings
+What's new?,General_Greetings
+What's up?,General_Greetings
+Who is this?,General_Greetings
+You there,General_Greetings
+Hello there,General_Greetings
+Bye bye,General_Ending
+Bye now,General_Ending
+Catch you later,General_Ending
+Cya later,General_Ending
+End trial,General_Ending
+Ending this session,General_Ending
+"Finished now, good bye",General_Ending
+Get lost,General_Ending
+Go away,General_Ending
+Go off,General_Ending
+Going now,General_Ending
+Good. bye.,General_Ending
+Goodbye,General_Ending
+Have a nice day?,General_Ending
+Hey bot go away,General_Ending
+I am leaving,General_Ending
+I am out of here,General_Ending
+I d like to stop doing this,General_Ending
+I have got to go,General_Ending
+I want to quit,General_Ending
+I'm done,General_Ending
+Im done,General_Ending
+Im good thank you,General_Ending
+I'm leaving now,General_Ending
+It was nice chatting with you,General_Ending
+Ok goodbye,General_Ending
+See you later,General_Ending
+See you,General_Ending
+Shut up,General_Ending
+Stop doing this,General_Ending
+Stop talking to me,General_Ending
+Thank you for your time,General_Ending
+"Thanks, bye!",General_Ending
+"Thanks very much, bye!",General_Ending
+That is all,General_Ending
+That's everything,General_Ending
+Time to go,General_Ending
