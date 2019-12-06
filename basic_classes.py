@@ -6,17 +6,11 @@ UNIT_TO_SELLING = 3
 
 class Bundle:
 
-    def __init__(self, egg_cost, egg_unit, egg_quantity=0,\
-    flour_cost, flour_unit, flour_quantity=0,\
-    milk_cost, milk_unit, milk_quantity=0,\
-    sugar_cost, sugar_unit, sugar_quantity=0,\
-    bakingpowder_cost, bakingpowder_unit, bakingpowder_quantity=0,\
-    chocolate_cost, chocolate_unit, chocolate_quantity=0,\
-    vanilla_cost, vanilla_unit, vanilla_quantity=0,\
-    blueberry_cost, blueberry_unit, blueberry_quantity=0):
+    def __init__(self, egg_cost, flour_cost, milk_cost, sugar_cost, bakingpowder_cost, chocolate_cost, vanilla_cost, blueberry_cost,\
+    egg_unit, flour_unit, milk_unit, sugar_unit, bakingpowder_unit, chocolate_unit, vanilla_unit, blueberry_unit,\
+    egg_quantity=0, flour_quantity=0, milk_quantity=0, sugar_quantity=0, bakingpowder_quantity=0, chocolate_quantity=0, vanilla_quantity=0, blueberry_quantity=0):
 
-        self.bundle =
-        {
+        self.bundle = {
             "Eggs" : Eggs(egg_cost*UNIT_TO_SELLING, egg_cost, egg_unit, egg_quantity),
             "Flour" : Flour(flour_cost*UNIT_TO_SELLING, flour_cost, flour_unit, flour_quantity),
             "Milk" : Milk(milk_cost*UNIT_TO_SELLING, milk_cost, milk_unit, milk_quantity),
@@ -45,7 +39,7 @@ class Bundle:
         string = "The current offer is "
         for item in self.bundle:
             if self.bundle[item].quantity > 0:
-                string += str(self.bundle[item].quantity))
+                string += str(self.bundle[item].quantity)
                 string += " "
                 if (item != "Eggs"):
                     string += self.bundle[item].unit
@@ -57,7 +51,7 @@ class Bundle:
         return string
 
 
-class Item():
+class Item:
     def __init__(self, starting_price, unit_price, unit, quantity):
         self.price = starting_price
         self.unit_price = unit_price
