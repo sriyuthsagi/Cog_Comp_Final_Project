@@ -1,3 +1,23 @@
+Microsoft Windows [Version 10.0.17134.1184]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 4, in <module>
+    from agent import Agent
+  File "C:\Users\thangn\Documents\github\Cog_Comp_Final_Project\agent.py", line 78
+    reply{"transcript"} = ""
+         ^
+SyntaxError: invalid syntax
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 4, in <module>
+    from agent import Agent
+  File "C:\Users\thangn\Documents\github\Cog_Comp_Final_Project\agent.py", line 114
+    if(opponent_intent = "opponent_price"):
+                       ^
+SyntaxError: invalid syntax
 
 C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
  [*] Waiting for messages. To exit press CTRL+C
@@ -610,3 +630,378 @@ Traceback (most recent call last):
   File "C:\Users\thangn\Documents\github\Cog_Comp_Final_Project\agent.py", line 24, in setUtility
     self.egg_unit = util["utilityParameters"]["egg"]["unit"]
 KeyError: 'egg'
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 17, in <module>
+    agent = Agent(agent, 1001)
+NameError: name 'agent' is not defined
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 2 b'{"msgType":"confirm","price":2,"quantity":{"egg":2,"flour":0,"milk":0,"sugar":0,"chocolate":0,"vanilla":0,"blueberry":0},"seller":"watson"}'
+ [x] Received 2 b'{"msgType":"startRound","roundNumber":1,"roundDuration":600,"timestamp":1576094213659}'
+ [x] Received 2 b'{"sender":"MarketPlace","msgType":"setAgentUtility","utilityParameters":{"currencyUnit":"USD","utility":{"egg":{"type":"unitcost","unit":"each","parameters":{"unitcost":0.5}},"flour":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.97}},"sugar":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.71}},"milk":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.38}},"chocolate":{"type":"unitcost","unit":"ounce","parameters":{"unitcost":0.24}},"blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.28}},"vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.33}}}}}'
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 56, in callback
+    agent.setUtility(msg)
+  File "C:\Users\thangn\Documents\github\Cog_Comp_Final_Project\agent.py", line 24, in setUtility
+    self.egg_unit = util["utilityParameters"]["egg"]["unit"]
+KeyError: 'egg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 73, in <module>
+    channel.start_consuming()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1866, in start_consuming
+    self._process_data_events(time_limit=None)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 2027, in _process_data_events
+    self.connection.process_data_events(time_limit=time_limit)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 834, in process_data_events
+    self._dispatch_channel_events()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 566, in _dispatch_channel_events
+    impl_channel._get_cookie()._dispatch_events()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1494, in _dispatch_events
+    evt.properties, evt.body)
+  File "connect_rabbitmq.py", line 59, in callback
+    reply = agent.get_response(msg);
+  File "C:\Users\thangn\Documents\github\Cog_Comp_Final_Project\agent.py", line 43, in get_response
+    reply['inReplyTo'] = msg['currentState']
+KeyError: 'currentState'
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 2 b'{"sender":"MarketPlace","msgType":"setAgentUtility","utilityParameters":{"currencyUnit":"USD","utility":{"egg":{"type":"unitcost","unit":"each","parameters":{"unitcost":0.39}},"flour":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.82}},"sugar":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.69}},"milk":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.31}},"chocolate":{"type":"unitcost","unit":"ounce","parameters":{"unitcost":0.36}},"blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.45}},"vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.35}}}}}'
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 56, in callback
+    agent.setUtility(msg)
+  File "C:\Users\thangn\Documents\github\Cog_Comp_Final_Project\agent.py", line 24, in setUtility
+    self.egg_unit = util["utilityParameters"]["egg"]["unit"]
+KeyError: 'egg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 73, in <module>
+    channel.start_consuming()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1866, in start_consuming
+    self._process_data_events(time_limit=None)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 2027, in _process_data_events
+    self.connection.process_data_events(time_limit=time_limit)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 834, in process_data_events
+    self._dispatch_channel_events()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 566, in _dispatch_channel_events
+    impl_channel._get_cookie()._dispatch_events()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1494, in _dispatch_events
+    evt.properties, evt.body)
+  File "connect_rabbitmq.py", line 59, in callback
+    reply = agent.get_response(msg);
+  File "C:\Users\thangn\Documents\github\Cog_Comp_Final_Project\agent.py", line 50, in get_response
+    transcript = msg["transcript"]
+KeyError: 'transcript'
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 2 b'{"msgType":"startRound","roundNumber":1,"roundDuration":600,"timestamp":1576096104970}'
+ [x] Received 2 b'{"sender":"MarketPlace","msgType":"setAgentUtility","utilityParameters":{"currencyUnit":"USD","utility":{"egg":{"type":"unitcost","unit":"each","parameters":{"unitcost":0.45}},"flour":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.81}},"sugar":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.98}},"milk":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.29}},"chocolate":{"type":"unitcost","unit":"ounce","parameters":{"unitcost":0.4}},"blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.36}},"vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.37}}}}}'
+Will respond. Has been addressed directly.
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 56, in callback
+    agent.setUtility(msg)
+  File "C:\Users\thangn\Documents\github\Cog_Comp_Final_Project\agent.py", line 24, in setUtility
+    self.egg_unit = util["utilityParameters"]["egg"]["unit"]
+KeyError: 'egg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\urllib3\connectionpool.py", line 377, in _make_request
+    httplib_response = conn.getresponse(buffering=True)
+TypeError: getresponse() got an unexpected keyword argument 'buffering'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\urllib3\contrib\pyopenssl.py", line 285, in recv_into
+    return self.connection.recv_into(*args, **kwargs)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\OpenSSL\SSL.py", line 1814, in recv_into
+    self._raise_ssl_error(self._ssl, result)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\OpenSSL\SSL.py", line 1614, in _raise_ssl_error
+    raise WantReadError()
+OpenSSL.SSL.WantReadError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 73, in <module>
+    channel.start_consuming()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1866, in start_consuming
+    self._process_data_events(time_limit=None)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 2027, in _process_data_events
+    self.connection.process_data_events(time_limit=time_limit)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 834, in process_data_events
+    self._dispatch_channel_events()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 566, in _dispatch_channel_events
+    impl_channel._get_cookie()._dispatch_events()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1494, in _dispatch_events
+    evt.properties, evt.body)
+  File "connect_rabbitmq.py", line 59, in callback
+    reply = agent.get_response(msg);
+  File "C:\Users\thangn\Documents\github\Cog_Comp_Final_Project\agent.py", line 81, in get_response
+    self.user_intent = watson_assistant.get_intent(transcript)
+  File "C:\Users\thangn\Documents\github\Cog_Comp_Final_Project\watson_assistant.py", line 22, in get_intent
+    assistant_id = assistant_id
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\ibm_watson\assistant_v2.py", line 122, in create_session
+    accept_json=True)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\ibm_cloud_sdk_core\base_service.py", line 201, in prepare_request
+    self.authenticator.authenticate(request)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\ibm_cloud_sdk_core\authenticators\iam_authenticator.py", line 71, in authenticate
+    bearer_token = self.token_manager.get_token()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\ibm_cloud_sdk_core\jwt_token_manager.py", line 51, in get_token
+    token_response = self.request_token()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\ibm_cloud_sdk_core\iam_token_manager.py", line 81, in request_token
+    proxies=self.proxies)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\ibm_cloud_sdk_core\jwt_token_manager.py", line 135, in _request
+    **kwargs)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\urllib3\connectionpool.py", line 380, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\thangn\Miniconda3\lib\http\client.py", line 1198, in getresponse
+    response.begin()
+  File "C:\Users\thangn\Miniconda3\lib\http\client.py", line 297, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\thangn\Miniconda3\lib\http\client.py", line 258, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\thangn\Miniconda3\lib\socket.py", line 576, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\urllib3\contrib\pyopenssl.py", line 297, in recv_into
+    if not util.wait_for_read(self.socket, self.socket.gettimeout()):
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\urllib3\util\wait.py", line 146, in wait_for_read
+    return wait_for_socket(sock, read=True, timeout=timeout)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\urllib3\util\wait.py", line 86, in select_wait_for_socket
+    rready, wready, xready = _retry_on_intr(fn, timeout)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\urllib3\util\wait.py", line 42, in _retry_on_intr
+    return fn(timeout)
+KeyboardInterrupt
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 2 b'{"msgType":"startRound","roundNumber":1,"roundDuration":600,"timestamp":1576096172092}'
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 73, in <module>
+    channel.start_consuming()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1866, in start_consuming
+    self._process_data_events(time_limit=None)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 2027, in _process_data_events
+    self.connection.process_data_events(time_limit=time_limit)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 825, in process_data_events
+    self._flush_output(common_terminator)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 513, in _flush_output
+    self._impl.ioloop.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 576, in poll
+    self._poller.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 953, in poll
+    self._fd_events[PollEvents.ERROR], self._get_max_wait())
+KeyboardInterrupt
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 2 b'{"transcript":"@Celia I would like to buy 2 eggs for $0.50 ","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":7}}'
+Will not respond. Other agent has been addressed directly.
+New round begin. User intent Id'd as
+user
+{'milk': -1, 'chocolate': -1, 'vanilla': -1, 'price': -1, 'sugar': -1, 'flour': -1, 'egg': -1, 'blueberry': -1}
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 73, in <module>
+    channel.start_consuming()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1866, in start_consuming
+    self._process_data_events(time_limit=None)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 2027, in _process_data_events
+    self.connection.process_data_events(time_limit=time_limit)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 825, in process_data_events
+    self._flush_output(common_terminator)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 513, in _flush_output
+    self._impl.ioloop.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 576, in poll
+    self._poller.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 953, in poll
+    self._fd_events[PollEvents.ERROR], self._get_max_wait())
+KeyboardInterrupt
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 2 b'{"transcript":"@Celia do you want to is it possible for you to easily switch to Watson and is your agent running at the moment ","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":3}}'
+Will not respond. Other agent has been addressed directly.
+New round begin. User intent Id'd as
+user
+{'egg': -1, 'flour': -1, 'sugar': -1, 'chocolate': -1, 'price': -1, 'vanilla': -1, 'milk': -1, 'blueberry': -1}
+{'inReplyTo': '', 'room': 1001, 'transcript': 'Please buy from me. ', 'sender': 'Watson'}
+ [x] Received 2 b'{"transcript":"@Celia I would like to buy 2 eggs for $1 50 ","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":1}}'
+Will not respond. Other agent has been addressed directly.
+New round begin. User intent Id'd as
+user
+{'egg': -1, 'flour': -1, 'sugar': -1, 'chocolate': -1, 'price': -1, 'vanilla': -1, 'milk': -1, 'blueberry': -1}
+{'inReplyTo': '', 'room': 1001, 'transcript': 'Please buy from me. ', 'sender': 'Watson'}
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 73, in <module>
+    print(' [*] Waiting for messages. To exit press CTRL+C')
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1866, in start_consuming
+    self._process_data_events(time_limit=None)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 2027, in _process_data_events
+    self.connection.process_data_events(time_limit=time_limit)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 825, in process_data_events
+    self._flush_output(common_terminator)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 513, in _flush_output
+    self._impl.ioloop.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 576, in poll
+    self._poller.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 953, in poll
+    self._fd_events[PollEvents.ERROR], self._get_max_wait())
+KeyboardInterrupt
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 2 b'{"transcript":"@Celia I would like to buy 2 eggs for $1 50 ","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":1}}'
+Will not respond. Other agent has been addressed directly.
+New round begin. User intent Id'd as
+user
+{'price': -1, 'chocolate': -1, 'vanilla': -1, 'milk': -1, 'flour': -1, 'blueberry': -1, 'egg': -1, 'sugar': -1}
+{'sender': 'Watson', 'transcript': 'Please buy from me. ', 'inReplyTo': '', 'room': 1001}
+edvc
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 74, in <module>
+    channel.start_consuming()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1866, in start_consuming
+    self._process_data_events(time_limit=None)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 2027, in _process_data_events
+    self.connection.process_data_events(time_limit=time_limit)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 825, in process_data_events
+    self._flush_output(common_terminator)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 513, in _flush_output
+    self._impl.ioloop.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 576, in poll
+    self._poller.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 953, in poll
+    self._fd_events[PollEvents.ERROR], self._get_max_wait())
+KeyboardInterrupt
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 2 b'{"sender":"MarketPlace","msgType":"setAgentUtility","utilityParameters":{"currencyUnit":"USD","utility":{"egg":{"type":"unitcost","unit":"each","parameters":{"unitcost":0.42}},"flour":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.86}},"sugar":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.93}},"milk":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.32}},"chocolate":{"type":"unitcost","unit":"ounce","parameters":{"unitcost":0.34}},"blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.36}},"vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.27}}}}}'
+Will not respond. Other agent has been addressed directly.
+New round begin. User intent Id'd as
+user
+{'blueberry': -1, 'flour': -1, 'milk': -1, 'price': -1, 'vanilla': -1, 'sugar': -1, 'chocolate': -1, 'egg': -1}
+{'inReplyTo': '', 'room': 1001, 'transcript': 'Please buy from me. ', 'sender': 'Watson'}
+edvc
+ [x] Received 2 b'{"msgType":"startRound","roundNumber":1,"roundDuration":600,"timestamp":1576096596670}'
+ [x] Received 2 b'{"msgType":"endRound","timestamp":1576096597280}'
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 74, in <module>
+    channel.start_consuming()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1866, in start_consuming
+    self._process_data_events(time_limit=None)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 2027, in _process_data_events
+    self.connection.process_data_events(time_limit=time_limit)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 825, in process_data_events
+    self._flush_output(common_terminator)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 513, in _flush_output
+    self._impl.ioloop.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 576, in poll
+    self._poller.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 953, in poll
+    self._fd_events[PollEvents.ERROR], self._get_max_wait())
+KeyboardInterrupt
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 2 b'{"msgType":"startRound","roundNumber":1,"roundDuration":600,"timestamp":1576096647611}'
+ [x] Received 2 b'{"transcript":"@Watson I would like to buy 8 eggs ","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":1}}'
+Will not respond. Other agent has been addressed directly.
+New round begin. User intent Id'd as
+user
+{'milk': -1, 'sugar': -1, 'vanilla': -1, 'flour': -1, 'blueberry': -1, 'chocolate': -1, 'price': -1, 'egg': -1}
+{'transcript': 'Please buy from me. ', 'room': 1001, 'sender': 'Watson', 'inReplyTo': ''}
+edvc
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 74, in <module>
+    channel.start_consuming()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1866, in start_consuming
+    self._process_data_events(time_limit=None)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 2027, in _process_data_events
+    self.connection.process_data_events(time_limit=time_limit)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 825, in process_data_events
+    self._flush_output(common_terminator)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 513, in _flush_output
+    self._impl.ioloop.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 576, in poll
+    self._poller.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 953, in poll
+    self._fd_events[PollEvents.ERROR], self._get_max_wait())
+KeyboardInterrupt
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>python connect_rabbitmq.py
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 2 b'{"sender":"MarketPlace","msgType":"setAgentUtility","utilityParameters":{"currencyUnit":"USD","utility":{"egg":{"type":"unitcost","unit":"each","parameters":{"unitcost":0.48}},"flour":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.53}},"sugar":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.64}},"milk":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.39}},"chocolate":{"type":"unitcost","unit":"ounce","parameters":{"unitcost":0.3}},"blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.25}},"vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.38}}}}}'
+Will not respond. Other agent has been addressed directly.
+New round begin. User intent Id'd as
+user
+{'blueberry': -1, 'chocolate': -1, 'sugar': -1, 'flour': -1, 'price': -1, 'vanilla': -1, 'egg': -1, 'milk': -1}
+{'sender': 'Watson', 'transcript': 'I can give you 3 eggs for $5', 'room': 1001, 'inReplyTo': ''}
+edvc
+ [x] Received 2 b'{"sender":"Watson","transcript":"I can give you 3 eggs for $5","room":1001,"inReplyTo":"","speaker":"Watson","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t2","conversation_turn_id":1}}'
+Will not respond. Other agent has been addressed directly.
+New round begin. User intent Id'd as
+user
+{'blueberry': -1, 'chocolate': -1, 'sugar': -1, 'flour': -1, 'price': -1, 'vanilla': -1, 'egg': -1, 'milk': -1}
+{'sender': 'Watson', 'transcript': 'I can give you 3 eggs for $5', 'room': 1001, 'inReplyTo': ''}
+edvc
+ [x] Received 2 b'{"msgType":"startRound","roundNumber":1,"roundDuration":600,"timestamp":1576096782321}'
+ [x] Received 2 b'{"sender":"MarketPlace","msgType":"setAgentUtility","utilityParameters":{"currencyUnit":"USD","utility":{"egg":{"type":"unitcost","unit":"each","parameters":{"unitcost":0.38}},"flour":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.74}},"sugar":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.97}},"milk":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.36}},"chocolate":{"type":"unitcost","unit":"ounce","parameters":{"unitcost":0.39}},"blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.48}},"vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.26}}}}}'
+Will not respond. Other agent has been addressed directly.
+New round begin. User intent Id'd as
+user
+{'blueberry': -1, 'chocolate': -1, 'sugar': -1, 'flour': -1, 'price': -1, 'vanilla': -1, 'egg': -1, 'milk': -1}
+{'sender': 'Watson', 'transcript': 'I can give you 3 eggs for $5', 'room': 1001, 'inReplyTo': ''}
+edvc
+ [x] Received 2 b'{"sender":"Watson","transcript":"I can give you 3 eggs for $5","room":1001,"inReplyTo":"","speaker":"Watson","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t2","conversation_turn_id":1}}'
+Will not respond. Other agent has been addressed directly.
+New round begin. User intent Id'd as
+user
+{'blueberry': -1, 'chocolate': -1, 'sugar': -1, 'flour': -1, 'price': -1, 'vanilla': -1, 'egg': -1, 'milk': -1}
+{'sender': 'Watson', 'transcript': 'I can give you 3 eggs for $5', 'room': 1001, 'inReplyTo': ''}
+edvc
+Traceback (most recent call last):
+  File "connect_rabbitmq.py", line 74, in <module>
+
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 1866, in start_consuming
+    self._process_data_events(time_limit=None)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 2027, in _process_data_events
+    self.connection.process_data_events(time_limit=time_limit)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 825, in process_data_events
+    self._flush_output(common_terminator)
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\blocking_connection.py", line 513, in _flush_output
+    self._impl.ioloop.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 576, in poll
+    self._poller.poll()
+  File "C:\Users\thangn\Miniconda3\lib\site-packages\pika\adapters\select_connection.py", line 953, in poll
+    self._fd_events[PollEvents.ERROR], self._get_max_wait())
+KeyboardInterrupt
+
+C:\Users\thangn\Documents\github\Cog_Comp_Final_Project>
