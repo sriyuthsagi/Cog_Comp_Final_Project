@@ -3,7 +3,7 @@
 from ibm_watson import AssistantV2
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
-api_key = "RBOj7ntUMp9NUo96Iy4clBDZi3m1ERCLAJLrTU2zLj1-"
+api_key = "4vNMoOfmBvKK8AQakpuTqtMQoD1EAyvFXtP9tX15hqYK"
 assistant_id = "ff2388bb-4e1e-4eea-8f79-2f032f04cf8a"
 
 # Set up Assistant service.
