@@ -8,7 +8,7 @@ class Bundle:
 
     def __init__(self, egg_cost, flour_cost, milk_cost, sugar_cost, chocolate_cost, vanilla_cost, blueberry_cost,\
     egg_unit, flour_unit, milk_unit, sugar_unit, chocolate_unit, vanilla_unit, blueberry_unit,\
-    egg_quantity=0, flour_quantity=0, milk_quantity=0, sugar_quantity=0, chocolate_quantity=0, vanilla_quantity=0, blueberry_quantity=0):
+    egg_quantity=-1, flour_quantity=-1, milk_quantity=-1, sugar_quantity=-1, chocolate_quantity=-1, vanilla_quantity=-1, blueberry_quantity=-1):
 
         self.bundle = {
             "Eggs" : Eggs(egg_cost*UNIT_TO_SELLING, egg_cost, egg_unit, egg_quantity),
@@ -24,34 +24,39 @@ class Bundle:
         self.total_unit_price = 0
         self.current_price = 0
         update_current_price()
+        update_unit_price()
+
+    def update_unit_price():
+        self.total_unit_price = 0
+        for item in self.bundle:
+            if self.bundle[item].quantity != -1:
+                self.total_unit_price += self.bundle[item].unit_price * self.bundle[item].quantity
+
 
     # unit price * quantity
     # current price * quantity
     def update_current_price():
-        self.total_unit_price = 0
-        self.current_price = 0
-        for item in self.bundle:
-            self.total_unit_price += self.bundle[item].unit_price * self.bundle[item].quantity
-            self.current_price += self.bundle[item].price * self.bundle[item].quantity
+        update_unit_price()
+        self.current_price = self.total_unit_price * UNIT_TO_SELLING
+        # for item in self.bundle:
+        #     self.current_price += self.bundle[item].price * self.bundle[item].quantity
 
 
-    def update_quantity(wanted):
-        # 'wanted' is a dictionary that would already be updated in parse_sentence.py
-        for item in wanted:
-            if wanted[item] != -1:
-                self.bundle[item].quantity = wanted[item]
+    def update_quantity(products):
+        # 'products' is a dictionary that would already be updated in parse_sentence.py
+        for item in products:
+            if products[item] != -1:
+                self.bundle[item].quantity = products[item]
         update_current_price()
 
     def set_price(new_price):
         self.current_price = new_price
 
     def is_profitable():
-        update_current_price()
         return self.current_price > self.total_unit_price
 
     def reduce_price():
-        if is_profitable():
-            self.current_price *= 0.80
+        self.current_price *= 0.80
 
     def clear_bundle():
         self.current_price = 0
@@ -59,7 +64,7 @@ class Bundle:
             self.bundle[item].quantity = 0
 
     def to_string():
-        string = "The current offer is "
+        string = "I can offer you "
         for item in self.bundle:
             if self.bundle[item].quantity > 0:
                 string += str(self.bundle[item].quantity)
@@ -70,7 +75,7 @@ class Bundle:
                 string += item
                 string += ","
         string += " for $"
-        string += str(calculate_total_price)
+        string += str(self.current_price)
         return string
 
 

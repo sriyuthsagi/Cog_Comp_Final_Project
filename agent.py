@@ -37,6 +37,10 @@ class Agent:
         self.blueberry_cost = util["utilityParameters"]["utility"]["blueberry"]["parameters"]["unitcost"]
         self.vanilla_cost = util["utilityParameters"]["utility"]["vanilla"]["parameters"]["unitcost"]
 
+        # create a bundle and Initialize utlities
+        self.offer = Bundle(self.egg_cost, self.flour_cost, self.milk_cost, self.sugar_cost, self.chocolate_cost, self.vanilla_cost, self.blueberry_cost,\
+        self.egg_unit, self.flour_unit, self.milk_unit, self.sugar_unit, self.chocolate_unit, self.vanilla_unit, self.blueberry_unit)
+
     def get_response(self,msg):
 
         reply = {}
@@ -52,7 +56,7 @@ class Agent:
             other_name = "Celia"
         else:
             other_name = "Watson"
-        
+
         if my_name in transcript:
             sender = 'User'
             receivee = 'Me'
@@ -65,13 +69,18 @@ class Agent:
 
         if sender == 'User:
             self.user_intent = watson_assistant.get_intent(transcript)
-        
+
         parse = parse_sentence.findProduct(transcript)
         products = parse[0]
         price = parse[1]
 
-        
-        
+        # This updates the quantity and the unit/current prices
+        self.offer.update_quantity(products)
+        if price != -1:
+            # if we're given a price, reduce our current price by 20%
+            self.offer.reduce_price()
+            # else, use the unit price * 3 as our current price
+
         # Store data to preserve between passes
         if sender == my_name:
           print("Message from self") #just here as a placeholder really
@@ -79,31 +88,34 @@ class Agent:
         elif sender == "User":
           # get opponent_intent and opponent_price
 
-          if(self.user_intent=="bargaining"):
-              reply["transcript"] = "Yes I can offer you a 20 percent discount."
-          if(self.user_intent=="ask_price"):
-              reply["transcript"] = "The price for those items is " + random.randint(4,10) +"dollars."
-          if(self.user_intent=="opponent_sale"):
-              reply["transcript"] = "Hi, are there any other items you would like to buy?"
+          reply["transcript"] = self.offer.to_string()
+
+          # if(self.user_intent=="bargaining"):
+          #     reply["transcript"] = "Yes, we can give you a 20 percent discount." + self.offer.to_string()
+          # if(self.user_intent=="ask_price"):
+          #     reply["transcript"] = "The price for those items is " + self.offer.current_price +"dollars."
+          # if(self.user_intent=="opponent_sale"):
+          #     reply["transcript"] = "Hi, are there any other items you would like to buy?"
           if(self.user_intent=="product_info"):
               reply["transcript"] = "All of my products are of the highest quality."
-          if(self.user_intent=="buy_product"):
-              reply["transcript"] = "Okay, I can offer you this for " + random.randint(4,10) + " dollars."
+          # if(self.user_intent=="buy_product"):
+          #     reply["transcript"] = "Okay, I can offer you this for " + self.offer.current_price + " dollars."
           if(self.user_intent=="accept_offer"):
               reply["transcript"] = "Okay, here you go! Thanks for doing business with me."
+              self.offer.clear_bundle()
           if(self.user_intent=="General_Greetings"):
               reply["transcript"] = "Hello! Would you like to buy anything from me today?"
           if(self.user_intent=="General_Ending"):
               reply["transcript"] = "Have a nice day."
 
 
-        else:# if sender == other_name:
-          # get opponent_intent and opponent_price
-          
-          if(self.opponent_intent == "opponent_price"):
-              reply["transcript"] = "Excuse me, I overheard that you are interested in buying ingredients. Would you like those same ingredients for "+ opponent_price*.8
-        
-        
+        # else:# if sender == other_name:
+        #   # get opponent_intent and opponent_price
+        #
+        #   if(self.opponent_intent == "opponent_price"):
+        #       reply["transcript"] = "Excuse me, I overheard that you are interested in buying ingredients. Would you like those same ingredients for "+ opponent_price*.8
+        #
+
         return reply;
 
 
