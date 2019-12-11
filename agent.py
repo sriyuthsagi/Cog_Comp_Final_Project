@@ -1,6 +1,6 @@
 import watson_assistant
 import parse_sentence
-
+import basic_classes
 
 class Agent:
 
@@ -67,7 +67,7 @@ class Agent:
             sender = 'Other'
             receivee = 'User'
 
-        if sender == 'User:
+        if sender == 'User':
             self.user_intent = watson_assistant.get_intent(transcript)
 
         parse = parse_sentence.findProduct(transcript)
@@ -124,13 +124,14 @@ if __name__ == "__main__" :
     agent = Agent("Watson", 1001)
 
     # read transcript from input
-    util = {"sender":"MarketPlace","msgType":"setAgentUtility","utilityParameters":{
-        "egg":{"type":"unitcost","unit":"each","parameters":{"unitcost":0.45}},
-        "flour":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.93}},
-        "sugar":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.69}},
-        "milk":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.35}},
-        "chocolate":{"type":"unitcost","unit":"ounce","parameters":{"unitcost":0.34}},
-        "blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.48}},
-        "vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.33}}}}
+    util  = {"sender":"MarketPlace","msgType":"setAgentUtility","utilityParameters":{
+    "currencyUnit":"USD","utility":{
+    "egg":{"type":"unitcost","unit":"each","parameters":{"unitcost":0.29}},
+    "flour":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.66}},
+    "sugar":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.63}},
+    "milk":{"type":"unitcost","unit":"cup","parameters":{"unitcost":0.26}},
+    "chocolate":{"type":"unitcost","unit":"ounce","parameters":{"unitcost":0.32}},
+    "blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.49}},
+    "vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.21}}}}}
     agent.setUtility(util)
     print(agent.egg_unit)
