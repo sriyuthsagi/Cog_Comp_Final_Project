@@ -4,7 +4,7 @@ from ibm_watson import AssistantV2
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
 api_key = "4vNMoOfmBvKK8AQakpuTqtMQoD1EAyvFXtP9tX15hqYK"
-assistant_id = "ff2388bb-4e1e-4eea-8f79-2f032f04cf8a"
+assistant_id = "d86dad12-dfff-48e6-82b7-cbd1efc44426"
 
 # Set up Assistant service.
 authenticator = IAMAuthenticator(api_key) # replace with API key
@@ -13,7 +13,7 @@ service = AssistantV2(
     authenticator = authenticator
 )
 
-service.set_service_url('https://gateway.watsonplatform.net/assistant/api')
+service.set_service_url('https://gateway.watsonplatform.net/assistant/api/v2/assistants/d86dad12-dfff-48e6-82b7-cbd1efc44426/sessions')
 
 def get_intent(transcript):
 
