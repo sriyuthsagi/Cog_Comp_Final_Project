@@ -13,7 +13,7 @@ service = AssistantV2(
     authenticator = authenticator
 )
 
-service.set_service_url('https://gateway.watsonplatform.net/assistant/api/v2/assistants/d86dad12-dfff-48e6-82b7-cbd1efc44426/sessions')
+service.set_service_url('https://gateway.watsonplatform.net/assistant/api')
 
 def get_intent(transcript):
 
