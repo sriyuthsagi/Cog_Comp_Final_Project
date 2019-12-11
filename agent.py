@@ -78,7 +78,8 @@ class Agent:
         self.offer.update_quantity(products)
         if price != -1:
             # if we're given a price, reduce our current price by 20%
-            self.offer.reduce_price()
+            if sender = 'User' or sender == 'Other':
+                self.offer.reduce_price()
             # else, use the unit price * 3 as our current price
 
         # Store data to preserve between passes
