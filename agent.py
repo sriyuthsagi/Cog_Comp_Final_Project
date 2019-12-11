@@ -67,6 +67,8 @@ class Agent:
             self.user_intent = watson_assistant.get_intent(transcript)
         
         parse = parse_sentence.findProduct(transcript)
+        products = parse[0]
+        price = parse[1]
 
         
         
