@@ -4,7 +4,7 @@ import json
 from agent import Agent
 
 # REMEMBER TO ASK::: msg.sender? or other?
-ip = '128.113.21.86'
+ip = '128.113.21.86' # 'localhost'
 
 credentials = pika.PlainCredentials('guest', 'guest')
 parameters = pika.ConnectionParameters(host=ip,

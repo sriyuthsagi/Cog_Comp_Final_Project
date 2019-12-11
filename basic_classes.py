@@ -6,34 +6,57 @@ UNIT_TO_SELLING = 3
 
 class Bundle:
 
-    def __init__(self, egg_cost, flour_cost, milk_cost, sugar_cost, bakingpowder_cost, chocolate_cost, vanilla_cost, blueberry_cost,\
-    egg_unit, flour_unit, milk_unit, sugar_unit, bakingpowder_unit, chocolate_unit, vanilla_unit, blueberry_unit,\
-    egg_quantity=0, flour_quantity=0, milk_quantity=0, sugar_quantity=0, bakingpowder_quantity=0, chocolate_quantity=0, vanilla_quantity=0, blueberry_quantity=0):
+    def __init__(self, egg_cost, flour_cost, milk_cost, sugar_cost, chocolate_cost, vanilla_cost, blueberry_cost,\
+    egg_unit, flour_unit, milk_unit, sugar_unit, chocolate_unit, vanilla_unit, blueberry_unit,\
+    egg_quantity=0, flour_quantity=0, milk_quantity=0, sugar_quantity=0, chocolate_quantity=0, vanilla_quantity=0, blueberry_quantity=0):
 
         self.bundle = {
             "Eggs" : Eggs(egg_cost*UNIT_TO_SELLING, egg_cost, egg_unit, egg_quantity),
             "Flour" : Flour(flour_cost*UNIT_TO_SELLING, flour_cost, flour_unit, flour_quantity),
             "Milk" : Milk(milk_cost*UNIT_TO_SELLING, milk_cost, milk_unit, milk_quantity),
             "Sugar" : Sugar(sugar_cost*UNIT_TO_SELLING, sugar_cost, sugar_unit, sugar_quantity),
-            "Baking Powder" : BakingPowder(bakingpowder_cost*UNIT_TO_SELLING, bakingpowder_cost, bakingpowder_unit, bakingpowder_quantity),
             "Chocolate Flavor" : ChocolateFlavor(chocolate_cost*UNIT_TO_SELLING, chocolate_cost, chocolate_unit, chocolate_quantity),
             "Vanilla Flavor" : VanillaFlavor(vanilla_cost*UNIT_TO_SELLING, vanilla_cost, vanilla_unit, vanilla_quantity),
             "Blueberry Flavor" : BlueberryFlavor(blueberry_cost*UNIT_TO_SELLING, blueberry_cost, blueberry_unit, blueberry_quantity)
         }
 
-        self.total_price = 0
+        # calculate the minimum price of the bundle based on each items' unit cost and the current cost
+        self.total_unit_price = 0
+        self.current_price = 0
+        update_current_price()
 
-    def calculate_total_price():
-        self.total_price = 0
+    # unit price * quantity
+    # current price * quantity
+    def update_current_price():
+        self.total_unit_price = 0
+        self.current_price = 0
         for item in self.bundle:
-            self.total_price += self.bundle[item].price * self.bundle[item].quantity
+            self.total_unit_price += self.bundle[item].unit_price * self.bundle[item].quantity
+            self.current_price += self.bundle[item].price * self.bundle[item].quantity
+
+
+    def update_quantity(wanted):
+        # 'wanted' is a dictionary that would already be updated in parse_sentence.py
+        for item in wanted:
+            if wanted[item] != -1:
+                self.bundle[item].quantity = wanted[item]
+        update_current_price()
+
+    def set_price(new_price):
+        self.current_price = new_price
 
     def is_profitable():
-        total_unit_price = 0
+        update_current_price()
+        return self.current_price > self.total_unit_price
+
+    def reduce_price():
+        if is_profitable():
+            self.current_price *= 0.80
+
+    def clear_bundle():
+        self.current_price = 0
         for item in self.bundle:
-            total_unit_price += self.bundle[item].min_price * self.bundle[item].quantity
-        calculate_total_price()
-        return self.total_price > total_unit_price
+            self.bundle[item].quantity = 0
 
     def to_string():
         string = "The current offer is "
@@ -61,13 +84,6 @@ class Item:
     def can_reduce_price():
         return self.price > self.unit_price
 
-    def reduce_price():
-        if can_reduce_price:
-            # reduce the current price by 20% if it does not go below our minimum unit cost
-            self.price *= 0.80
-        else:
-            # this is the lowest we can go without losing profit
-            self.price = self.unit_price
 
     def set_price(new_price):
         self.price = new_price
