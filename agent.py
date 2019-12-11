@@ -42,7 +42,7 @@ class Agent:
         reply = {}
         reply['inReplyTo'] = msg['currentState']
         reply['sender'] = self.my_name
-        reply['transcript'] = "" #this shouldnt be said. only here as emergency backup
+        reply['transcript'] = "Please buy my coffee. " #this shouldnt be said. only here as emergency backup
         reply['room'] = self.room_num
          
         sender = msg["sender"]
@@ -75,6 +75,7 @@ class Agent:
         # Store data to preserve between passes
         if sender == my_name:
           print("Message from self") #just here as a placeholder really
+          reply{"transcript"} = ""
         elif sender == "User":
           # get opponent_intent and opponent_price
           self.user_intent = watson_assistant.get_intent(transcript)
@@ -82,12 +83,32 @@ class Agent:
           print("New round begin. User intent Id'd as ",self.user_intent)
           self.wanted = parse_sentence.findProduct(transcript)
           self.user_price = self.wanted["price"]
+          
+          if(self.user_intent=="bargaining"):
+              reply["transcript"] = "Yes I can offer you a 20 percent discount."
+          if(self.user_intent=="ask_price"):
+              reply["transcript"] = "The price for those items is " + random.randint(4,10) +"dollars."
+          if(self.user_intent=="opponent_sale"):
+              reply["transcript"] = "Hi, are there any other items you would like to buy?"
+          if(self.user_intent=="product_info"):
+              reply["transcript"] = "All of my products are of the highest quality."
+          if(self.user_intent=="buy_product"):
+              reply["transcript"] = "Okay, I can offer you this for " + random.randint(4,10) + " dollars."
+          if(self.user_intent=="accept_offer"):
+              reply["transcript"] = "Okay, here you go! Thanks for doing business with me."
+          if(self.user_intent=="General_Greetings"):
+              reply["transcript"] = "Hello! Would you like to buy anything from me today?"
+          if(self.user_intent=="General_Ending"):
+              reply["transcript"] = "Have a nice day."
+
+                 
         else:# if sender == other_name:
           # get opponent_intent and opponent_price
           self.opponent_intent = watson_assistant.get_intent(transcript)
           self.wanted = parse_sentence.findProduct(transcript)
           self.opponent_price = self.wanted["price"]
-        
+          if(opponent_intent = "opponent_price"):
+              reply["transcript"] = "Excuse me, I overheard that you are interested in buying ingredients. Would you like those same ingredients for "+ opponent_price*.8
         # dont respond more than once per round
         if self.hasSpokenAlreadyThisRound:
           willRespond = False
@@ -96,11 +117,9 @@ class Agent:
         
         if willRespond:
             self.hasSpokenAlreadyThisRound = True
-            reply["transcript"] = "This is where we need to generate the reply"
+            #reply["transcript"] = response(self.wanted, self.intent)
 
         return reply;
-
-
 
 
 if __name__ == "__main__" :
