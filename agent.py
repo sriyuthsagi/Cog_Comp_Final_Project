@@ -42,35 +42,28 @@ class Agent:
         reply = {}
         reply['inReplyTo'] = ''
         reply['sender'] = self.my_name
-        reply['transcript'] = "Please buy from me. " #this shouldnt be said. only here as emergency backup
+        reply['transcript'] = "" #this shouldnt be said. only here as emergency backup
         reply['room'] = self.room_num
 
-        sender = "User"
-        if (sender == None or sender == "null"): sender = "User"
-        transcript = ''
-        addressee = 'Celia'
+        transcript = msg['transcript']
 
         my_name = self.my_name
         if my_name == "Watson":
             other_name = "Celia"
         else:
             other_name = "Watson"
-
-        # Determine whether we will respond to this message
-        willRespond = False;
-        if addressee == my_name:
-            willRespond = True;
-            print("Will respond. Has been addressed directly.")
-        elif addressee == other_name:
-            willRespond = False;
-            print("Will not respond. Other agent has been addressed directly.")
+        
+        if my_name in transcript:
+            sender = 'User'
+            receivee = 'Me'
+        elif other_name in transcript:
+            sender = 'User'
+            receivee = 'Other'
         else:
-            if sender == my_name:
-                print("Will not respond. Is own message.")
-                willRespond = False;
-            else:
-                print("Will respond. Is not addressed to anyone in particular.")
-                willRespond = True;
+            sender = 'Other'
+            receivee = 'User'
+
+        
 
         # Store data to preserve between passes
         if sender == my_name:
