@@ -63,21 +63,19 @@ class Agent:
             sender = 'Other'
             receivee = 'User'
 
+        if sender == 'User:
+            self.user_intent = watson_assistant.get_intent(transcript)
         
+        parse = parse_sentence.findProduct(transcript)
 
+        
+        
         # Store data to preserve between passes
         if sender == my_name:
           print("Message from self") #just here as a placeholder really
           reply["transcript"] = ""
         elif sender == "User":
           # get opponent_intent and opponent_price
-          self.user_intent = watson_assistant.get_intent(transcript)
-          self.hasSpokenAlreadyThisRound = False
-          print("New round begin. User intent Id'd as ",self.user_intent)
-          self.wanted = parse_sentence.findProduct(transcript)
-          self.user_price = self.wanted["price"]
-          print('user', self.user_intent)
-          print(self.wanted)
 
           if(self.user_intent=="bargaining"):
               reply["transcript"] = "Yes I can offer you a 20 percent discount."
@@ -99,24 +97,11 @@ class Agent:
 
         else:# if sender == other_name:
           # get opponent_intent and opponent_price
-          self.opponent_intent = watson_assistant.get_intent(transcript)
-          self.wanted = parse_sentence.findProduct(transcript)
-          self.opponent_price = self.wanted["price"]
-          print('user', self.opponent_intent)
-          print(self.wanted)
+          
           if(self.opponent_intent == "opponent_price"):
               reply["transcript"] = "Excuse me, I overheard that you are interested in buying ingredients. Would you like those same ingredients for "+ opponent_price*.8
-        # dont respond more than once per round
-        if self.hasSpokenAlreadyThisRound:
-          willRespond = False
-          print("Will not respond. Has already spoken in this round.")
-
-
-        if willRespond:
-            self.hasSpokenAlreadyThisRound = True
-            #reply["transcript"] = response(self.wanted, self.intent)
-        reply["transcript"] = 'I can give you 3 eggs for $5'
-        print(reply)
+        
+        
         return reply;
 
 
