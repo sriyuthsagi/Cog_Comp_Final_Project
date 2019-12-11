@@ -15,8 +15,8 @@ channel = connection.channel()
 
 
 agent_main = 'Celia'
-agent = Agent(agent, 1001)
-to_channel = 'to-' + agent_main.lower
+agent = Agent(agent_main, 1001)
+to_channel = 'to-' + agent_main.lower()
 
 
 def connect_to_server():
@@ -62,7 +62,7 @@ def callback(ch, method, properties, body):
         ch.basic_publish(exchange='amq.topic', routing_key='output-gate', body=json.dumps(reply));
         print('edvc')
 
-connect_to_server();
+connect_to_server()
 
     #channel.queue_declare(queue='amq.topic')
 channel.basic_consume(
