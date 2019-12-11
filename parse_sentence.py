@@ -9,18 +9,15 @@ def findProduct(sentence):
     for i in products:
         
         if i in sentence:
-            temp = 0
             
-            pos = sentence.find(i)-1
-            
-            for j in range(pos, -1, -1):
+            for j in range(sentence.find(i)-1, -1, -1):
                 if sentence[j].isdigit():
                     
-                    pos2 = j
-                    while sentence[pos2].isdigit():
-                        pos2 = pos2 - 1
+                    begin = j
+                    while sentence[begin].isdigit():
+                        begin = begin - 1
                     
-                    products_present[i] = int(sentence[pos2+1:j+1])
+                    products_present[i] = int(sentence[begin+1:j+1])
                     
                     break
         
