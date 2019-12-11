@@ -21,21 +21,21 @@ class Agent:
 
     def setUtility(self, util):
 
-        self.egg_unit = util["utilityParameters"]["egg"]["unit"]
-        self.flour_unit = util["utilityParameters"]["flour"]["unit"]
-        self.sugar_unit = util["utilityParameters"]["sugar"]["unit"]
-        self.milk_unit = util["utilityParameters"]["milk"]["unit"]
-        self.chocolate_unit = util["utilityParameters"]["chocolate"]["unit"]
-        self.blueberry_unit = util["utilityParameters"]["blueberry"]["unit"]
-        self.vanilla_unit = util["utilityParameters"]["vanilla"]["unit"]
+        self.egg_unit = util["utilityParameters"]["utility"]["egg"]["unit"]
+        self.flour_unit = util["utilityParameters"]["utility"]["flour"]["unit"]
+        self.sugar_unit = util["utilityParameters"]["utility"]["sugar"]["unit"]
+        self.milk_unit = util["utilityParameters"]["utility"]["milk"]["unit"]
+        self.chocolate_unit = util["utilityParameters"]["utility"]["chocolate"]["unit"]
+        self.blueberry_unit = util["utilityParameters"]["utility"]["blueberry"]["unit"]
+        self.vanilla_unit = util["utilityParameters"]["utility"]["vanilla"]["unit"]
 
-        self.egg_cost = util["utilityParameters"]["egg"]["parameters"]["unitcost"]
-        self.flour_cost = util["utilityParameters"]["flour"]["parameters"]["unitcost"]
-        self.sugar_cost = util["utilityParameters"]["sugar"]["parameters"]["unitcost"]
-        self.milk_cost = util["utilityParameters"]["milk"]["parameters"]["unitcost"]
-        self.chocolate_cost = util["utilityParameters"]["chocolate"]["parameters"]["unitcost"]
-        self.blueberry_cost = util["utilityParameters"]["blueberry"]["parameters"]["unitcost"]
-        self.vanilla_cost = util["utilityParameters"]["vanilla"]["parameters"]["unitcost"]
+        self.egg_cost = util["utilityParameters"]["utility"]["egg"]["parameters"]["unitcost"]
+        self.flour_cost = util["utilityParameters"]["utility"]["flour"]["parameters"]["unitcost"]
+        self.sugar_cost = util["utilityParameters"]["utility"]["sugar"]["parameters"]["unitcost"]
+        self.milk_cost = util["utilityParameters"]["utility"]["milk"]["parameters"]["unitcost"]
+        self.chocolate_cost = util["utilityParameters"]["utility"]["chocolate"]["parameters"]["unitcost"]
+        self.blueberry_cost = util["utilityParameters"]["utility"]["blueberry"]["parameters"]["unitcost"]
+        self.vanilla_cost = util["utilityParameters"]["utility"]["vanilla"]["parameters"]["unitcost"]
 
     def get_response(self,msg):
 
