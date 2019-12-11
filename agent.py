@@ -65,7 +65,10 @@ class Agent:
             receivee = 'Other'
         else:
             try:
-                sender = msg['sender']
+                if msg['sender'] == my_name:
+                    sender = msg['sender']
+                else:
+                    sender = 'Other'
                 receivee = 'User'
             except:
                 sender = 'Other'
