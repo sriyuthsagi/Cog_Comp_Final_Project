@@ -4,12 +4,12 @@
 def findProduct(sentence):
     
     products = ["egg", "flour", "sugar", "milk", "chocolate", "blueberry", "vanilla"]
-    products_present = {"egg": -1, "flour": -1, "sugar": -1, "milk": -1, "chocolate": -1, "blueberry": -1, "vanilla": -1, "price": -1}
+    products_present = {"egg": -1, "flour": -1, "sugar": -1, "milk": -1, "chocolate": -1, "blueberry": -1, "vanilla": -1}
     
     for i in products:
         
         if i in sentence:
-            products_present[i] = 0
+            products_present[i] = -2
             
             for j in range(sentence.find(i)-1, -1, -1):
                 if sentence[j].isdigit():
@@ -22,9 +22,9 @@ def findProduct(sentence):
                     
                     break
         
-    products_present["price"] = priceIdentify(sentence)
+    price = priceIdentify(sentence)
     
-    return products_present
+    return [products_present, price]
 
 
 def priceIdentify(sentence):
