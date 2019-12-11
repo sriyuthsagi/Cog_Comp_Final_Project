@@ -1,4 +1,5 @@
 import watson_assistant
+import parse_sentence
 
 
 class Agent:
