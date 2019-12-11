@@ -33,9 +33,9 @@ def callback(ch, method, properties, body):
       
     msg = json.loads(body);  
     if msg["msgType"] == "setAgentUtility":
-      #send to the class to create the initial values for the products
+      agent.setUtility(util)
     else:
-      #send to the rest of the program to get reply
+      reply = agent.get_response(msg);
       
     ch.basic_publish(exchange='amq.topic', routing_key='output-gate', body=json.dumps(reply));
 connect_to_server();
