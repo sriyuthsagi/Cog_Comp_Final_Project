@@ -13,9 +13,9 @@ parameters = pika.ConnectionParameters(host=ip,
 connection = pika.BlockingConnection(parameters)
 channel = connection.channel()
 
-agen = 'Celia'
-agent = Agent(agent, 1001)
-to_channel = 'to-' + agent.lower
+agent_name = 'Watson'
+agent = Agent(agent_name, 1001)
+to_channel = 'to-celia'# + agent_name.lower()
 
 def connect_to_server():
 
@@ -50,15 +50,16 @@ def callback(ch, method, properties, body):
     print(" [x] Received 2 %r" % body)
 
     msg = json.loads(body.decode('utf8'));
-    
+
     try:
         if msg["msgType"] == "setAgentUtility":
             agent.setUtility(msg)
-        
+
     except:
         reply = agent.get_response(msg);
         ch.basic_publish(exchange='amq.topic', routing_key='output-gate', body=json.dumps(reply));
-    
+        print('edvc')
+
 connect_to_server();
 
     #channel.queue_declare(queue='amq.topic')

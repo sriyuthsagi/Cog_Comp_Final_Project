@@ -40,14 +40,14 @@ class Agent:
     def get_response(self,msg):
 
         reply = {}
-        reply['inReplyTo'] = msg['currentState']
+        reply['inReplyTo'] = ''
         reply['sender'] = self.my_name
         reply['transcript'] = "Please buy from me. " #this shouldnt be said. only here as emergency backup
         reply['room'] = self.room_num
 
         sender = "User"
         if (sender == None or sender == "null"): sender = "User"
-        transcript = msg["transcript"]
+        transcript = ''
         addressee = 'Celia'
 
         my_name = self.my_name
@@ -122,7 +122,8 @@ class Agent:
         if willRespond:
             self.hasSpokenAlreadyThisRound = True
             #reply["transcript"] = response(self.wanted, self.intent)
-
+        reply["transcript"] = 'I can give you 3 eggs for $5'
+        print(reply)
         return reply;
 
 
