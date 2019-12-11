@@ -80,11 +80,13 @@ class Agent:
           self.user_intent = watson_assistant.get_intent(transcript)
           self.hasSpokenAlreadyThisRound = False
           print("New round begin. User intent Id'd as ",self.user_intent)
-          self.user_price = price_identify.priceIdentify(transcript)
+          self.wanted = parse_sentence.findProduct(transcript)
+          self.user_price = self.wanted["price"]
         else:# if sender == other_name:
           # get opponent_intent and opponent_price
           self.opponent_intent = watson_assistant.get_intent(transcript)
-          self.opponent_price = price_identify.priceIdentify(transcript)
+          self.wanted = parse_sentence.findProduct(transcript)
+          self.opponent_price = self.wanted["price"]
         
         # dont respond more than once per round
         if self.hasSpokenAlreadyThisRound:
