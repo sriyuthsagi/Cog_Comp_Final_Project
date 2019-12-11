@@ -7,20 +7,20 @@ class Agent:
     def __init__(self, name, room_num):
         self.my_name = name
         self.room_num = room_num
-        
+
         self.user_intent = ""
         self.user_price = -1
         self.opponent_intent = ""
         self.opponent_price = -1
-        
-        
+
+
         self.firstRound = True
         self.hasSpokenAlreadyThisRound = False
-    
-    
-    
+
+
+
     def setUtility(self, util):
-        
+
         self.egg_unit = util["utilityParameters"]["egg"]["unit"]
         self.flour_unit = util["utilityParameters"]["flour"]["unit"]
         self.sugar_unit = util["utilityParameters"]["sugar"]["unit"]
@@ -28,7 +28,7 @@ class Agent:
         self.chocolate_unit = util["utilityParameters"]["chocolate"]["unit"]
         self.blueberry_unit = util["utilityParameters"]["blueberry"]["unit"]
         self.vanilla_unit = util["utilityParameters"]["vanilla"]["unit"]
-        
+
         self.egg_cost = util["utilityParameters"]["egg"]["parameters"]["unitcost"]
         self.flour_cost = util["utilityParameters"]["flour"]["parameters"]["unitcost"]
         self.sugar_cost = util["utilityParameters"]["sugar"]["parameters"]["unitcost"]
@@ -36,26 +36,26 @@ class Agent:
         self.chocolate_cost = util["utilityParameters"]["chocolate"]["parameters"]["unitcost"]
         self.blueberry_cost = util["utilityParameters"]["blueberry"]["parameters"]["unitcost"]
         self.vanilla_cost = util["utilityParameters"]["vanilla"]["parameters"]["unitcost"]
-        
+
     def get_response(self,msg):
-          
+
         reply = {}
         reply['inReplyTo'] = msg['currentState']
         reply['sender'] = self.my_name
-        reply['transcript'] = "Please buy my coffee. " #this shouldnt be said. only here as emergency backup
+        reply['transcript'] = "Please buy from me. " #this shouldnt be said. only here as emergency backup
         reply['room'] = self.room_num
-         
-        sender = msg["sender"]
+
+        sender = "User"
         if (sender == None or sender == "null"): sender = "User"
         transcript = msg["transcript"]
-        addressee = msg["addressee"]
-        
+        addressee = 'Celia'
+
         my_name = self.my_name
         if my_name == "Watson":
             other_name = "Celia"
         else:
             other_name = "Watson"
-        
+
         # Determine whether we will respond to this message
         willRespond = False;
         if addressee == my_name:
@@ -71,11 +71,11 @@ class Agent:
             else:
                 print("Will respond. Is not addressed to anyone in particular.")
                 willRespond = True;
-                
+
         # Store data to preserve between passes
         if sender == my_name:
           print("Message from self") #just here as a placeholder really
-          reply{"transcript"} = ""
+          reply["transcript"] = ""
         elif sender == "User":
           # get opponent_intent and opponent_price
           self.user_intent = watson_assistant.get_intent(transcript)
@@ -83,7 +83,9 @@ class Agent:
           print("New round begin. User intent Id'd as ",self.user_intent)
           self.wanted = parse_sentence.findProduct(transcript)
           self.user_price = self.wanted["price"]
-          
+          print('user', self.user_intent)
+          print(self.wanted)
+
           if(self.user_intent=="bargaining"):
               reply["transcript"] = "Yes I can offer you a 20 percent discount."
           if(self.user_intent=="ask_price"):
@@ -101,20 +103,22 @@ class Agent:
           if(self.user_intent=="General_Ending"):
               reply["transcript"] = "Have a nice day."
 
-                 
+
         else:# if sender == other_name:
           # get opponent_intent and opponent_price
           self.opponent_intent = watson_assistant.get_intent(transcript)
           self.wanted = parse_sentence.findProduct(transcript)
           self.opponent_price = self.wanted["price"]
-          if(opponent_intent = "opponent_price"):
+          print('user', self.opponent_intent)
+          print(self.wanted)
+          if(self.opponent_intent == "opponent_price"):
               reply["transcript"] = "Excuse me, I overheard that you are interested in buying ingredients. Would you like those same ingredients for "+ opponent_price*.8
         # dont respond more than once per round
         if self.hasSpokenAlreadyThisRound:
           willRespond = False
           print("Will not respond. Has already spoken in this round.")
-        
-        
+
+
         if willRespond:
             self.hasSpokenAlreadyThisRound = True
             #reply["transcript"] = response(self.wanted, self.intent)
@@ -137,5 +141,3 @@ if __name__ == "__main__" :
         "vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.33}}}}
     agent.setUtility(util)
     print(agent.egg_unit)
-
-    
