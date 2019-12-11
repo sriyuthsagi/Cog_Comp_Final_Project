@@ -13,9 +13,9 @@ parameters = pika.ConnectionParameters(host=ip,
 connection = pika.BlockingConnection(parameters)
 channel = connection.channel()
 
-agen = 'Celia'
+agent_main = 'Celia'
 agent = Agent(agent, 1001)
-to_channel = 'to-' + agent.lower
+to_channel = 'to-' + agent_main.lower
 
 def connect_to_server():
 
