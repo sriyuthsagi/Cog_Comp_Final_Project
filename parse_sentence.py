@@ -8,7 +8,7 @@ def findProduct(sentence):
 
     for i in products:
 
-        if i in sentence:
+        if i.lower() in sentence:
             products_present[i] = 1
 
             for j in range(sentence.find(i)-1, -1, -1):
