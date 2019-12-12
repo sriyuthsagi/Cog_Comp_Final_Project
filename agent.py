@@ -43,6 +43,9 @@ class Agent:
 
     def get_response(self,msg):
 
+        # msg is the input
+        # reply is the output
+
         reply = {}
         reply['inReplyTo'] = ''
         reply['sender'] = self.my_name
@@ -59,15 +62,15 @@ class Agent:
 
         if my_name in transcript:
             sender = 'User'
-            receivee = msg['sender']
+            receivee = my_name
         elif other_name in transcript:
             sender = 'User'
             receivee = 'Other'
-        else:
+        else: # there is no @. This means that an agent is talking
             try:
-                if msg['sender'] == my_name:
-                    sender = msg['sender']
-                else:
+                if msg['sender'] == my_name: # our agent is talking
+                    sender = my_name
+                else: # the other agent is talking
                     sender = 'Other'
                 receivee = 'User'
             except:
@@ -81,6 +84,7 @@ class Agent:
         products = parse[0]
         price = parse[1]
 
+        print(products)
         # This updates the quantity and the unit/current prices
         self.offer.update_quantity(products)
         if price != -1:
@@ -142,3 +146,5 @@ if __name__ == "__main__" :
     "blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.49}},
     "vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.21}}}}}
     agent.setUtility(util)
+    sample = {"transcript":"@Watson I would like to buy 12 cups of flour ","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    print(agent.get_response(sample))

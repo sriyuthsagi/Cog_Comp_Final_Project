@@ -11,19 +11,19 @@ class Bundle:
     egg_quantity=-1, flour_quantity=-1, milk_quantity=-1, sugar_quantity=-1, chocolate_quantity=-1, vanilla_quantity=-1, blueberry_quantity=-1):
 
         self.bundle = {
-            "Eggs" : Eggs(egg_cost*UNIT_TO_SELLING, egg_cost, egg_unit, egg_quantity),
+            "Egg" : Eggs(egg_cost*UNIT_TO_SELLING, egg_cost, egg_unit, egg_quantity),
             "Flour" : Flour(flour_cost*UNIT_TO_SELLING, flour_cost, flour_unit, flour_quantity),
             "Milk" : Milk(milk_cost*UNIT_TO_SELLING, milk_cost, milk_unit, milk_quantity),
             "Sugar" : Sugar(sugar_cost*UNIT_TO_SELLING, sugar_cost, sugar_unit, sugar_quantity),
-            "Chocolate Flavor" : ChocolateFlavor(chocolate_cost*UNIT_TO_SELLING, chocolate_cost, chocolate_unit, chocolate_quantity),
-            "Vanilla Flavor" : VanillaFlavor(vanilla_cost*UNIT_TO_SELLING, vanilla_cost, vanilla_unit, vanilla_quantity),
-            "Blueberry Flavor" : BlueberryFlavor(blueberry_cost*UNIT_TO_SELLING, blueberry_cost, blueberry_unit, blueberry_quantity)
+            "Chocolate" : ChocolateFlavor(chocolate_cost*UNIT_TO_SELLING, chocolate_cost, chocolate_unit, chocolate_quantity),
+            "Vanilla" : VanillaFlavor(vanilla_cost*UNIT_TO_SELLING, vanilla_cost, vanilla_unit, vanilla_quantity),
+            "Blueberry" : BlueberryFlavor(blueberry_cost*UNIT_TO_SELLING, blueberry_cost, blueberry_unit, blueberry_quantity)
         }
 
         # calculate the minimum price of the bundle based on each items' unit cost and the current cost
         self.total_unit_price = 0
         self.current_price = 0
-        
+
 
     def update_unit_price():
         self.total_unit_price = 0
@@ -41,7 +41,7 @@ class Bundle:
         #     self.current_price += self.bundle[item].price * self.bundle[item].quantity
 
 
-    def update_quantity(products):
+    def update_quantity(self,products):
         # 'products' is a dictionary that would already be updated in parse_sentence.py
         for item in products:
             if products[item] != -1:
@@ -68,7 +68,7 @@ class Bundle:
             if self.bundle[item].quantity > 0:
                 string += str(self.bundle[item].quantity)
                 string += " "
-                if (item != "Eggs"):
+                if (item != "Egg"):
                     string += self.bundle[item].unit
                     string += " of "
                 string += item
