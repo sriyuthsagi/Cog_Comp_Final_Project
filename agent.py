@@ -93,7 +93,7 @@ class Agent:
         if sender == my_name:
           print("Message from self") #just here as a placeholder really
           reply["transcript"] = ""
-        elif sender == "User":
+        elif sender == "User" or sender == 'Other':
           # get opponent_intent and opponent_price
 
           reply["transcript"] = self.offer.to_string()
