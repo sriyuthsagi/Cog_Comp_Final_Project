@@ -38,7 +38,7 @@ class Agent:
         self.vanilla_cost = util["utilityParameters"]["utility"]["vanilla"]["parameters"]["unitcost"]
 
         # create a bundle and Initialize utlities
-        self.offer = Bundle(self.egg_cost, self.flour_cost, self.milk_cost, self.sugar_cost, self.chocolate_cost, self.vanilla_cost, self.blueberry_cost,\
+        self.offer = basic_classes.Bundle(self.egg_cost, self.flour_cost, self.milk_cost, self.sugar_cost, self.chocolate_cost, self.vanilla_cost, self.blueberry_cost,\
         self.egg_unit, self.flour_unit, self.milk_unit, self.sugar_unit, self.chocolate_unit, self.vanilla_unit, self.blueberry_unit)
 
     def get_response(self,msg):
@@ -142,4 +142,3 @@ if __name__ == "__main__" :
     "blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.49}},
     "vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.21}}}}}
     agent.setUtility(util)
-    print(agent.egg_unit)

@@ -23,8 +23,7 @@ class Bundle:
         # calculate the minimum price of the bundle based on each items' unit cost and the current cost
         self.total_unit_price = 0
         self.current_price = 0
-        update_current_price()
-        update_unit_price()
+        
 
     def update_unit_price():
         self.total_unit_price = 0
@@ -101,32 +100,32 @@ class Item:
 
 class Eggs(Item):
     def __init__(self, starting_price, unit_price, unit, quantity):
-        super().__init__(self, starting_price, unit_price, unit, quantity)
+        super().__init__(starting_price, unit_price, unit, quantity)
 
 class Flour(Item):
     def __init__(self, starting_price, unit_price, unit, quantity):
-        super().__init__(self, starting_price, unit_price, unit, quantity)
+        super().__init__(starting_price, unit_price, unit, quantity)
 
 class Milk(Item):
     def __init__(self, starting_price, unit_price, unit, quantity):
-        super().__init__(self, starting_price, unit_price, unit, quantity)
+        super().__init__(starting_price, unit_price, unit, quantity)
 
 class Sugar(Item):
     def __init__(self, starting_price, unit_price, unit, quantity):
-        super().__init__(self, starting_price, unit_price, unit, quantity)
+        super().__init__(starting_price, unit_price, unit, quantity)
 
 class BakingPowder(Item):
         def __init__(self, starting_price, unit_price, unit, quantity):
-            super().__init__(self, starting_price, unit_price, unit, quantity)
+            super().__init__(starting_price, unit_price, unit, quantity)
 
 class ChocolateFlavor(Item):
     def __init__(self, starting_price, unit_price, unit, quantity):
-        super().__init__(self, starting_price, unit_price, unit, quantity)
+        super().__init__(starting_price, unit_price, unit, quantity)
 
 class VanillaFlavor(Item):
     def __init__(self, starting_price, unit_price, unit, quantity):
-        super().__init__(self, starting_price, unit_price, unit, quantity)
+        super().__init__(starting_price, unit_price, unit, quantity)
 
 class BlueberryFlavor(Item):
     def __init__(self, starting_price, unit_price, unit, quantity):
-        super().__init__(self, starting_price, unit_price, unit, quantity)
+        super().__init__(starting_price, unit_price, unit, quantity)
