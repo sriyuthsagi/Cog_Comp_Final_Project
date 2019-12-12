@@ -16,7 +16,7 @@ channel = connection.channel()
 
 agent_main = 'Celia'
 agent = Agent(agent_main, 1001)
-to_channel = 'to-' + agent_main.lower()
+to_channel = 'to-celia' #+ agent_main.lower()
 
 
 def connect_to_server():

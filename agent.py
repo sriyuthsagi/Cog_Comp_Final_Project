@@ -47,7 +47,11 @@ class Agent:
         # reply is the output
 
         reply = {}
-        reply['inReplyTo'] = ''
+        try:
+            reply['inReplyTo'] = msg["currentState"]
+            print("made in inReplyTo", reply['inReplyTo'])
+        except:
+            reply['inReplyTo'] = ''
         reply['sender'] = self.my_name
         reply['transcript'] = "" #this shouldnt be said. only here as emergency backup
         reply['room'] = self.room_num
@@ -131,10 +135,10 @@ class Agent:
         #   if(self.opponent_intent == "opponent_price"):
         #       reply["transcript"] = "Excuse me, I overheard that you are interested in buying ingredients. Would you like those same ingredients for "+ opponent_price*.8
         #
-
+        print(reply)
         return reply;
 
-
+# FOR TESTING
 if __name__ == "__main__" :
 
     agent = Agent("Watson", 1001)

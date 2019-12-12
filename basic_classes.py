@@ -83,7 +83,7 @@ class Bundle:
                     string += self.bundle[item].unit
                     string += " of "
                 string += item
-                if(item == "egg" and bundle[item].quantity>1):
+                if(item == "egg" and self.bundle[item].quantity>1):
                     string += "s"
                 string += ", "
         string += "for $"
