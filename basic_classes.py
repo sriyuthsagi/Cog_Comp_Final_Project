@@ -11,13 +11,13 @@ class Bundle:
     egg_quantity=-1, flour_quantity=-1, milk_quantity=-1, sugar_quantity=-1, chocolate_quantity=-1, vanilla_quantity=-1, blueberry_quantity=-1):
 
         self.bundle = {
-            "Egg" : Eggs(egg_cost*UNIT_TO_SELLING, egg_cost, egg_unit, egg_quantity),
-            "Flour" : Flour(flour_cost*UNIT_TO_SELLING, flour_cost, flour_unit, flour_quantity),
-            "Milk" : Milk(milk_cost*UNIT_TO_SELLING, milk_cost, milk_unit, milk_quantity),
-            "Sugar" : Sugar(sugar_cost*UNIT_TO_SELLING, sugar_cost, sugar_unit, sugar_quantity),
-            "Chocolate" : ChocolateFlavor(chocolate_cost*UNIT_TO_SELLING, chocolate_cost, chocolate_unit, chocolate_quantity),
-            "Vanilla" : VanillaFlavor(vanilla_cost*UNIT_TO_SELLING, vanilla_cost, vanilla_unit, vanilla_quantity),
-            "Blueberry" : BlueberryFlavor(blueberry_cost*UNIT_TO_SELLING, blueberry_cost, blueberry_unit, blueberry_quantity)
+            "egg" : Eggs(egg_cost*UNIT_TO_SELLING, egg_cost, egg_unit, egg_quantity),
+            "flour" : Flour(flour_cost*UNIT_TO_SELLING, flour_cost, flour_unit, flour_quantity),
+            "milk" : Milk(milk_cost*UNIT_TO_SELLING, milk_cost, milk_unit, milk_quantity),
+            "sugar" : Sugar(sugar_cost*UNIT_TO_SELLING, sugar_cost, sugar_unit, sugar_quantity),
+            "chocolate" : ChocolateFlavor(chocolate_cost*UNIT_TO_SELLING, chocolate_cost, chocolate_unit, chocolate_quantity),
+            "vanilla" : VanillaFlavor(vanilla_cost*UNIT_TO_SELLING, vanilla_cost, vanilla_unit, vanilla_quantity),
+            "blueberry" : BlueberryFlavor(blueberry_cost*UNIT_TO_SELLING, blueberry_cost, blueberry_unit, blueberry_quantity)
         }
 
         # calculate the minimum price of the bundle based on each items' unit cost and the current cost
@@ -25,7 +25,7 @@ class Bundle:
         self.current_price = 0
 
 
-    def update_unit_price():
+    def update_unit_price(self):
         self.total_unit_price = 0
         for item in self.bundle:
             if self.bundle[item].quantity != -1:
@@ -34,8 +34,8 @@ class Bundle:
 
     # unit price * quantity
     # current price * quantity
-    def update_current_price():
-        update_unit_price()
+    def update_current_price(self):
+        self.update_unit_price()
         self.current_price = self.total_unit_price * UNIT_TO_SELLING
         # for item in self.bundle:
         #     self.current_price += self.bundle[item].price * self.bundle[item].quantity
@@ -46,35 +46,38 @@ class Bundle:
         for item in products:
             if products[item] != -1:
                 self.bundle[item].quantity = products[item]
-        update_current_price()
+        self.update_current_price()
 
-    def set_price(new_price):
+    def set_price(self,new_price):
         self.current_price = new_price
 
-    def is_profitable():
+    def is_profitable(self):
         return self.current_price > self.total_unit_price
 
-    def reduce_price():
-        self.current_price *= 0.80
+    def reduce_price(self):
+        if self.is_profitable():
+            self.current_price *= 0.80
 
-    def clear_bundle():
+    def clear_bundle(self):
         self.current_price = 0
         for item in self.bundle:
             self.bundle[item].quantity = 0
 
-    def to_string():
+    def to_string(self):
         string = "I can offer you "
         for item in self.bundle:
             if self.bundle[item].quantity > 0:
                 string += str(self.bundle[item].quantity)
                 string += " "
-                if (item != "Egg"):
+                if (item != "egg"):
                     string += self.bundle[item].unit
                     string += " of "
                 string += item
-                string += ","
-        string += " for $"
-        string += str(self.current_price)
+                if(item == "egg" and bundle[item].quantity>1):
+                    string += "s"
+                string += ", "
+        string += "for $"
+        string += str(round(self.current_price,2))
         return string
 
 

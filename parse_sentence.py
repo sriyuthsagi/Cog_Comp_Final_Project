@@ -3,8 +3,8 @@
 
 def findProduct(sentence):
 
-    products = ["Egg", "Flour", "Sugar", "Milk", "Chocolate", "Blueberry", "Vanilla"]
-    products_present = {"Egg": -1, "Flour": -1, "Sugar": -1, "Milk": -1, "Chocolate": -1, "Blueberry": -1, "Vanilla": -1}
+    products = ["egg", "flour", "sugar", "milk", "chocolate", "blueberry", "vanilla"]
+    products_present = {"egg": -1, "flour": -1, "sugar": -1, "milk": -1, "chocolate": -1, "blueberry": -1, "vanilla": -1}
 
     for i in products:
 

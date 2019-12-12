@@ -146,5 +146,15 @@ if __name__ == "__main__" :
     "blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.49}},
     "vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.21}}}}}
     agent.setUtility(util)
-    sample = {"transcript":"@Watson I would like to buy 12 cups of flour ","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
     print(agent.get_response(sample))
+    sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    print(agent.get_response(sample))
+    sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    print(agent.get_response(sample))
+    # sample = {"transcript":"@Watson I would like to buy 2 cups of sugar","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    # print(agent.get_response(sample))
+    # sample = {"transcript":"@Watson I would like to buy 0 cups of sugar","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    # print(agent.get_response(sample))
+    # sample = {"transcript":"@Watson How much for 12 cups of flour?","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    # print(agent.get_response(sample))
