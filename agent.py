@@ -84,6 +84,7 @@ class Agent:
         products = parse[0]
         price = parse[1]
 
+        already_reduced_price = False
         print(products)
         # This updates the quantity and the unit/current prices
         self.offer.update_quantity(products)
@@ -91,6 +92,7 @@ class Agent:
             # if we're given a price, reduce our current price by 20%
             if sender == 'User' or sender == 'Other':
                 self.offer.reduce_price()
+                already_reduced_price = True
             # else, use the unit price * 3 as our current price
 
         # Store data to preserve between passes
@@ -102,8 +104,10 @@ class Agent:
 
           reply["transcript"] = self.offer.to_string()
 
-          # if(self.user_intent=="bargaining"):
-          #     reply["transcript"] = "Yes, we can give you a 20 percent discount." + self.offer.to_string()
+          if(self.user_intent=="bargaining"):
+              if not already_reduced_price:
+                  self.offer.reduce_price()
+              reply["transcript"] = self.offer.to_string()
           # if(self.user_intent=="ask_price"):
           #     reply["transcript"] = "The price for those items is " + self.offer.current_price +"dollars."
           # if(self.user_intent=="opponent_sale"):
@@ -151,6 +155,12 @@ if __name__ == "__main__" :
     sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
     print(agent.get_response(sample))
     sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    print(agent.get_response(sample))
+    sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk and 2 cups of sugar","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    print(agent.get_response(sample))
+    sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk and 2 cups of sugar for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    print(agent.get_response(sample))
+    sample = {"transcript":"@Watson Hello","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
     print(agent.get_response(sample))
     # sample = {"transcript":"@Watson I would like to buy 2 cups of sugar","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
     # print(agent.get_response(sample))

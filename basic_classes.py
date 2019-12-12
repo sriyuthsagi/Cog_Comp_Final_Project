@@ -30,6 +30,7 @@ class Bundle:
         for item in self.bundle:
             if self.bundle[item].quantity != -1:
                 self.total_unit_price += self.bundle[item].unit_price * self.bundle[item].quantity
+        print("UNIT PRICE", self.total_unit_price)
 
 
     # unit price * quantity
@@ -41,12 +42,20 @@ class Bundle:
         #     self.current_price += self.bundle[item].price * self.bundle[item].quantity
 
 
+    def update_current_price_diff(self,difference ):
+        for item in difference:
+            self.current_price -= difference[item] * self.bundle[item].unit_price*UNIT_TO_SELLING
+
     def update_quantity(self,products):
+        difference = {"egg": 0, "flour": 0, "sugar": 0, "milk": 0, "chocolate": 0, "blueberry": 0, "vanilla": 0}
         # 'products' is a dictionary that would already be updated in parse_sentence.py
         for item in products:
             if products[item] != -1:
+                difference[item] = self.bundle[item].quantity - products[item]
                 self.bundle[item].quantity = products[item]
-        self.update_current_price()
+        self.update_unit_price()
+        self.update_current_price_diff(difference)
+
 
     def set_price(self,new_price):
         self.current_price = new_price
@@ -56,7 +65,8 @@ class Bundle:
 
     def reduce_price(self):
         if self.is_profitable():
-            self.current_price *= 0.80
+            self.current_price =max(self.current_price * 0.80 , self.total_unit_price)
+
 
     def clear_bundle(self):
         self.current_price = 0
