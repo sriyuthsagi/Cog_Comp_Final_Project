@@ -18,7 +18,7 @@ class Agent:
         self.hasSpokenAlreadyThisRound = False
 
 
-
+    # This function sets the utility costs from the utility funciton util given to us in json from rabbitmq
     def setUtility(self, util):
 
         self.egg_unit = util["utilityParameters"]["utility"]["egg"]["unit"]
@@ -58,6 +58,7 @@ class Agent:
 
         transcript = msg['transcript']
 
+        # The following code simply figures out who is the sender and who is the recevee from the msg
         my_name = self.my_name
         if my_name == "Watson":
             other_name = "Celia"
@@ -84,9 +85,10 @@ class Agent:
         if sender == 'User':
             self.user_intent = watson_assistant.get_intent(transcript)
 
+        # parse the inputted string to find the quantity of each item mentioned as well as a price if we are given one
         parse = parse_sentence.findProduct(transcript)
-        products = parse[0]
-        price = parse[1]
+        products = parse[0] # a dictionary containing the products mentioned and their quantities
+        price = parse[1] # the price mentioned in the input string if it exists, else set to -1
 
         already_reduced_price = False
         print(products)
@@ -101,32 +103,34 @@ class Agent:
 
         # Store data to preserve between passes
         if sender == my_name:
-          print("Message from self") #just here as a placeholder really
-          reply["transcript"] = ""
+            print("Message from self") #just here as a placeholder really
+            reply["transcript"] = ""
         elif sender == "User" or sender == 'Other':
-          # get opponent_intent and opponent_price
+            # get opponent_intent and opponent_price
 
-          reply["transcript"] = self.offer.to_string()
+            reply["transcript"] = self.offer.to_string()
 
-          if(self.user_intent=="bargaining"):
-              if not already_reduced_price:
-                  self.offer.reduce_price()
-              reply["transcript"] = self.offer.to_string()
-          # if(self.user_intent=="ask_price"):
-          #     reply["transcript"] = "The price for those items is " + self.offer.current_price +"dollars."
-          # if(self.user_intent=="opponent_sale"):
-          #     reply["transcript"] = "Hi, are there any other items you would like to buy?"
-          if(self.user_intent=="product_info"):
-              reply["transcript"] = "All of my products are of the highest quality."
-          # if(self.user_intent=="buy_product"):
-          #     reply["transcript"] = "Okay, I can offer you this for " + self.offer.current_price + " dollars."
-          if(self.user_intent=="accept_offer"):
-              reply["transcript"] = "Okay, here you go! Thanks for doing business with me."
-              self.offer.clear_bundle()
-          if(self.user_intent=="General_Greetings"):
-              reply["transcript"] = "Hello! Would you like to buy anything from me today?"
-          if(self.user_intent=="General_Ending"):
-              reply["transcript"] = "Have a nice day."
+            if(self.user_intent=="bargaining"):
+                if not already_reduced_price:
+                    self.offer.reduce_price()
+                reply["transcript"] = self.offer.to_string()
+
+            if(self.user_intent=="product_info"):
+                reply["transcript"] = "All of my products are of the highest quality."
+
+            if(self.user_intent=="accept_offer"):
+                reply["transcript"] = "Okay, here you go! Thanks for doing business with me."
+                self.offer.clear_bundle()
+            if(self.user_intent=="General_Greetings"):
+                reply["transcript"] = "Hello! Would you like to buy anything from me today?"
+            if(self.user_intent=="General_Ending"):
+                reply["transcript"] = "Have a nice day."
+           #  if(self.user_intent=="buy_product"):
+           #     reply["transcript"] = "Okay, I can offer you this for " + self.offer.current_price + " dollars."
+           # if(self.user_intent=="ask_price"):
+           #     reply["transcript"] = "The price for those items is " + self.offer.current_price +"dollars."
+           # if(self.user_intent=="opponent_sale"):
+           #     reply["transcript"] = "Hi, are there any other items you would like to buy?"
 
 
         # else:# if sender == other_name:
@@ -144,6 +148,7 @@ if __name__ == "__main__" :
     agent = Agent("Watson", 1001)
 
     # read transcript from input
+    # this is a utility function used for testing
     util  = {"sender":"MarketPlace","msgType":"setAgentUtility","utilityParameters":{
     "currencyUnit":"USD","utility":{
     "egg":{"type":"unitcost","unit":"each","parameters":{"unitcost":0.29}},
@@ -154,18 +159,18 @@ if __name__ == "__main__" :
     "blueberry":{"type":"unitcost","unit":"packet","parameters":{"unitcost":0.49}},
     "vanilla":{"type":"unitcost","unit":"teaspoon","parameters":{"unitcost":0.21}}}}}
     agent.setUtility(util)
-    sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
-    print(agent.get_response(sample))
-    sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
-    print(agent.get_response(sample))
-    sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
-    print(agent.get_response(sample))
-    sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk and 2 cups of sugar","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
-    print(agent.get_response(sample))
-    sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk and 2 cups of sugar for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
-    print(agent.get_response(sample))
-    sample = {"transcript":"@Watson Hello","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
-    print(agent.get_response(sample))
+    # sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    # print(agent.get_response(sample))
+    # sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    # print(agent.get_response(sample))
+    # sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    # print(agent.get_response(sample))
+    # sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk and 2 cups of sugar","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    # print(agent.get_response(sample))
+    # sample = {"transcript":"@Watson I would like to buy 12 cups of flour and 3 cups of milk and 2 cups of sugar for $2","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    # print(agent.get_response(sample))
+    # sample = {"transcript":"@Watson Hello","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
+    # print(agent.get_response(sample))
     # sample = {"transcript":"@Watson I would like to buy 2 cups of sugar","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}
     # print(agent.get_response(sample))
     # sample = {"transcript":"@Watson I would like to buy 0 cups of sugar","currentState":{"conversation_state_id":"sNormOn","conversation_last_transition_id":"t0","conversation_turn_id":52}}

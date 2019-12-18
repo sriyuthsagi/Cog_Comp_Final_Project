@@ -1,4 +1,4 @@
-# Sample code for class declaration of bundles for RPI Bakeoff Negotiation
+# Code for class declaration of bundles for RPI Bakeoff Negotiation
 
 # This is a multiplicative constant that will be used to determine our starting price.
 # Right now, it is set to 'x' times the unit cost
@@ -6,11 +6,14 @@ UNIT_TO_SELLING = 3
 
 class Bundle:
 
+    # This constructor is called when the agent sets Utilities in agent.py
     def __init__(self, egg_cost, flour_cost, milk_cost, sugar_cost, chocolate_cost, vanilla_cost, blueberry_cost,\
     egg_unit, flour_unit, milk_unit, sugar_unit, chocolate_unit, vanilla_unit, blueberry_unit,\
     egg_quantity=-1, flour_quantity=-1, milk_quantity=-1, sugar_quantity=-1, chocolate_quantity=-1, vanilla_quantity=-1, blueberry_quantity=-1):
 
         self.bundle = {
+            # Note: The starting selling price of each item can be adjusted by changing the first parameter in each of these constructs.
+            # Right now, they are set to 'UNIT_TO_SELLING' * the unit cost of each item
             "egg" : Eggs(egg_cost*UNIT_TO_SELLING, egg_cost, egg_unit, egg_quantity),
             "flour" : Flour(flour_cost*UNIT_TO_SELLING, flour_cost, flour_unit, flour_quantity),
             "milk" : Milk(milk_cost*UNIT_TO_SELLING, milk_cost, milk_unit, milk_quantity),
@@ -20,7 +23,7 @@ class Bundle:
             "blueberry" : BlueberryFlavor(blueberry_cost*UNIT_TO_SELLING, blueberry_cost, blueberry_unit, blueberry_quantity)
         }
 
-        # calculate the minimum price of the bundle based on each items' unit cost and the current cost
+        # At construction, the quantity of every item in the bundle is 0, so price*quantity = 0
         self.total_unit_price = 0
         self.current_price = 0
 
@@ -30,23 +33,21 @@ class Bundle:
         for item in self.bundle:
             if self.bundle[item].quantity != -1:
                 self.total_unit_price += self.bundle[item].unit_price * self.bundle[item].quantity
-        print("UNIT PRICE", self.total_unit_price)
+        # print("UNIT PRICE", self.total_unit_price)
 
 
-    # unit price * quantity
-    # current price * quantity
     def update_current_price(self):
         self.update_unit_price()
         self.current_price = self.total_unit_price * UNIT_TO_SELLING
-        # for item in self.bundle:
-        #     self.current_price += self.bundle[item].price * self.bundle[item].quantity
 
-
+    # this differs from update_current_price() as this adds the unit price*quantity to the bundle price,
+    # only if the offer was different from the last time the ucrrent price was calculated
     def update_current_price_diff(self,difference ):
         for item in difference:
             self.current_price -= difference[item] * self.bundle[item].unit_price*UNIT_TO_SELLING
 
     def update_quantity(self,products):
+        # 'difference' tracks the difference in quantities between offers in order to more accurately determine a new current price
         difference = {"egg": 0, "flour": 0, "sugar": 0, "milk": 0, "chocolate": 0, "blueberry": 0, "vanilla": 0}
         # 'products' is a dictionary that would already be updated in parse_sentence.py
         for item in products:
@@ -60,34 +61,40 @@ class Bundle:
     def set_price(self,new_price):
         self.current_price = new_price
 
+    # checks if the current price can be reduced
     def is_profitable(self):
         return self.current_price > self.total_unit_price
 
+    # if a reduction in price is profitable, reduce the current price by 20% or choose the minimum price (self.total_unit_price)
     def reduce_price(self):
         if self.is_profitable():
             self.current_price =max(self.current_price * 0.80 , self.total_unit_price)
 
-
+    # Resents the price and quantity back to 0
+    # This should be called after we recognize that a sale has been made either by either agent
     def clear_bundle(self):
         self.current_price = 0
         for item in self.bundle:
             self.bundle[item].quantity = 0
 
+    # ex) I can offer you 2 eggs, 3 cups of milk, for $10.57
+    # Note: This does function does not print the string. It returns it
+    # Usage: print(bundle.to_string())
     def to_string(self):
         string = "I can offer you "
         for item in self.bundle:
             if self.bundle[item].quantity > 0:
                 string += str(self.bundle[item].quantity)
                 string += " "
-                if (item != "egg"):
+                if (item != "egg"): # accounts for possible mistakes such as "2 each of eggs". Instead skip unit and 'of' for eggs
                     string += self.bundle[item].unit
                     string += " of "
                 string += item
-                if(item == "egg" and self.bundle[item].quantity>1):
+                if(item == "egg" and self.bundle[item].quantity>1): # accounts for "1 egg vs 2 eggs"
                     string += "s"
                 string += ", "
         string += "for $"
-        string += str(round(self.current_price,2))
+        string += str(round(self.current_price,2)) # makes sure currency is displayed as at most 2 digits past the decimal point
         return string
 
 

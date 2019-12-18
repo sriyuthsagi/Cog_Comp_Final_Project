@@ -1,11 +1,12 @@
 
 
-
+# if the product is in the input sentence, find a numeric value before and set the respective quantity to it
 def findProduct(sentence):
 
     products = ["egg", "flour", "sugar", "milk", "chocolate", "blueberry", "vanilla"]
     products_present = {"egg": -1, "flour": -1, "sugar": -1, "milk": -1, "chocolate": -1, "blueberry": -1, "vanilla": -1}
 
+    # loop through the list of products
     for i in products:
 
         if i.lower() in sentence:
@@ -26,7 +27,7 @@ def findProduct(sentence):
 
     return [products_present, price]
 
-
+# find the currency is the sentence and then return the number respective to it
 def priceIdentify(sentence):
 
     currencies = ['dollar', 'yuan', 'kuai', 'RMB']

@@ -1,4 +1,5 @@
-# connects to watson 
+# connects to watson
+# https://cloud.ibm.com/apidocs/assistant/assistant-v2?code=python
 
 from ibm_watson import AssistantV2
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
@@ -28,7 +29,6 @@ def get_intent(transcript):
     'text': transcript
     }
 
-  
   # Start conversation with empty message.
   response = service.message(
       assistant_id,
@@ -40,7 +40,7 @@ def get_intent(transcript):
   # If an intent was detected, set it to be returned.
   if response['output']['intents']:
       intent = response['output']['intents'][0]['intent']
-  
+
   # Print the output from dialog, if any. Supports only a single
   # text response.
   #if response['output']['generic']:
@@ -52,8 +52,8 @@ def get_intent(transcript):
       assistant_id = assistant_id,
       session_id = session_id
   )
-  
-  # Return the intent 
+
+  # Return the intent
   return intent
 
 # for testing
@@ -61,8 +61,6 @@ if __name__ == "__main__" :
 
     # read transcript from input
     user_input = input('>> ')
-    
+
     # get intent
     print(get_intent(user_input))
-    
-
